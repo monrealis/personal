@@ -23,10 +23,10 @@ public class CvMarshallerTest {
 		ObjectFactory f = new ObjectFactory();
 		JAXBContext c = JAXBContext.newInstance(f.getClass());
 		Marshaller m = c.createMarshaller();
+		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		StringWriter w = new StringWriter();
 		m.marshal(f.createCv(cv), w);
 		String xml = w.toString();
 		return xml;
 	}
-
 }
