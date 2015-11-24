@@ -1,4 +1,4 @@
-package eu.vytenis.cv;
+package eu.vytenis.cv.xmlio;
 
 import java.io.StringWriter;
 

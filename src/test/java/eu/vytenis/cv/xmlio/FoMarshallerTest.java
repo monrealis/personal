@@ -1,9 +1,12 @@
-package eu.vytenis.cv;
+package eu.vytenis.cv.xmlio;
 
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.w3._1999.xsl.format.Root;
+
+import eu.vytenis.cv.FoBuilder;
+import eu.vytenis.cv.xmlio.FoMarshaller;
 
 public class FoMarshallerTest {
 	@Test

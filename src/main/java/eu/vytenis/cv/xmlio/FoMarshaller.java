@@ -1,4 +1,4 @@
-package eu.vytenis.cv;
+package eu.vytenis.cv.xmlio;
 
 import org.w3._1999.xsl.format.ObjectFactory;
 import org.w3._1999.xsl.format.Root;
