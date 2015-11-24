@@ -4,6 +4,7 @@ import org.w3._1999.xsl.format.Block;
 import org.w3._1999.xsl.format.Flow;
 import org.w3._1999.xsl.format.LayoutMasterSet;
 import org.w3._1999.xsl.format.PageSequence;
+import org.w3._1999.xsl.format.RegionBody;
 import org.w3._1999.xsl.format.Root;
 import org.w3._1999.xsl.format.SimplePageMaster;
 
@@ -16,6 +17,7 @@ public class FoBuilder {
 		m.setPageHeight("29.7cm");
 		m.setPageWidth("21.0cm");
 		m.getMargin().add("2cm");
+		m.setRegionBody(new RegionBody());
 		ms.getSimplePageMasterOrPageSequenceMaster().add(m);
 		r.setLayoutMasterSet(ms);
 		PageSequence sequence = new PageSequence();
@@ -24,6 +26,7 @@ public class FoBuilder {
 		Block block = new Block();
 		flow.getMarkerOrBlockOrBlockContainer().add(block);
 		sequence.setFlow(flow);
+		sequence.setMasterReference("A4-portrait");
 		r.getPageSequence().add(sequence);
 		return r;
 	}
