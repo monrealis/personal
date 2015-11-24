@@ -5,15 +5,11 @@ import java.io.StringWriter;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
-
-import org.w3._1999.xsl.format.ObjectFactory;
-import org.w3._1999.xsl.format.Root;
 
 public class BaseMarshaller {
-	protected Class[] types;
+	protected Class<?>[] types;
 
-	protected BaseMarshaller(Class... types) {
+	protected BaseMarshaller(Class<?>... types) {
 		this.types = types;
 	}
 
