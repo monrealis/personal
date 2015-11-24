@@ -1,5 +1,7 @@
 package eu.vytenis.cv;
 
+import java.util.List;
+
 import org.w3._1999.xsl.format.Block;
 import org.w3._1999.xsl.format.Flow;
 import org.w3._1999.xsl.format.LayoutMasterSet;
@@ -9,26 +11,62 @@ import org.w3._1999.xsl.format.Root;
 import org.w3._1999.xsl.format.SimplePageMaster;
 
 public class FoBuilder {
+	private Root root;
+	private String masterName = "A4-portrait";
+
 	public Root build() {
+		root = createRoot();
+		flowContent().add(createBlock());
+		return root;
+	}
+
+	private Root createRoot() {
 		Root r = new Root();
+		r.setLayoutMasterSet(createMasterSet());
+		r.getPageSequence().add(createPageSequence());
+		return r;
+	}
+
+	private LayoutMasterSet createMasterSet() {
 		LayoutMasterSet ms = new LayoutMasterSet();
+		ms.getSimplePageMasterOrPageSequenceMaster().add(createMaster());
+		return ms;
+	}
+
+	private SimplePageMaster createMaster() {
 		SimplePageMaster m = new SimplePageMaster();
-		m.setMasterName("A4-portrait");
+		m.setMasterName(masterName);
 		m.setPageHeight("29.7cm");
 		m.setPageWidth("21.0cm");
 		m.getMargin().add("2cm");
 		m.setRegionBody(new RegionBody());
-		ms.getSimplePageMasterOrPageSequenceMaster().add(m);
-		r.setLayoutMasterSet(ms);
-		PageSequence sequence = new PageSequence();
+		return m;
+	}
+
+	private Flow createFlow() {
 		Flow flow = new Flow();
 		flow.setFlowName("xsl-region-body");
+		return flow;
+	}
+
+	private PageSequence createPageSequence() {
+		PageSequence sequence = new PageSequence();
+		sequence.setMasterReference(masterName);
+		sequence.setFlow(createFlow());
+		return sequence;
+	}
+
+	private Block createBlock() {
 		Block block = new Block();
-		flow.getMarkerOrBlockOrBlockContainer().add(block);
-		sequence.setFlow(flow);
-		sequence.setMasterReference("A4-portrait");
-		r.getPageSequence().add(sequence);
-		return r;
+		return block;
+	}
+
+	private List<Object> flowContent() {
+		return flow().getMarkerOrBlockOrBlockContainer();
+	}
+
+	private Flow flow() {
+		return root.getPageSequence().get(0).getFlow();
 	}
 
 }
