@@ -11,33 +11,24 @@
 	<complexType name="KeyValue">
 		<sequence>
 			<element name="key" type="string" />
-			<element name="key_" minOccurs="0" maxOccurs="unbounded" type="tns:StringWithLanguage" />
 			<element name="value" type="string" />
-			<element name="value_" minOccurs="0" maxOccurs="unbounded" type="tns:StringWithLanguage" />
 		</sequence>
 	</complexType>
 
 	<complexType name="Experience">
 		<sequence>
 			<element name="duration" type="string" />
-			<element name="duration_" minOccurs="0" maxOccurs="unbounded" type="tns:StringWithLanguage" />
 			<element name="position" type="string" />
-			<element name="position_" minOccurs="0" maxOccurs="unbounded" type="tns:StringWithLanguage" />
 			<element name="company" type="string" />
-			<element name="company_" minOccurs="0" maxOccurs="unbounded" type="tns:StringWithLanguage" />
 		</sequence>
 	</complexType>
 
 	<complexType name="Project">
 		<sequence>
 			<element name="name" type="string" />
-			<element name="name_" minOccurs="0" maxOccurs="unbounded" type="tns:StringWithLanguage" />
 			<element name="description" type="string" />
-			<element name="description_" minOccurs="0" maxOccurs="unbounded" type="tns:StringWithLanguage" />
 			<element name="role" type="string" />
-			<element name="role_" minOccurs="0" maxOccurs="unbounded" type="tns:StringWithLanguage" />
 			<element name="technologies" type="string" />
-			<element name="technologies_" minOccurs="0" maxOccurs="unbounded" type="tns:StringWithLanguage" />
 		</sequence>
 	</complexType>
 
