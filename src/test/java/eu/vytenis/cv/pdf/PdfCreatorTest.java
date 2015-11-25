@@ -1,4 +1,4 @@
-package eu.vytenis.cv;
+package eu.vytenis.cv.pdf;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.junit.Test;
 import org.w3._1999.xsl.format.Root;
 
+import eu.vytenis.cv.FoBuilder;
 import eu.vytenis.cv.pdf.PdfCreator;
 import eu.vytenis.cv.xmlio.FoMarshaller;
 
