@@ -19,7 +19,7 @@ import org.w3._1999.xsl.format.Root;
 
 import eu.vytenis.cv.xmlio.FoMarshaller;
 
-public class PdfBuilderTest {
+public class PdfCreatorTest {
 	@Test
 	public void run() throws Exception {
 		FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI());
