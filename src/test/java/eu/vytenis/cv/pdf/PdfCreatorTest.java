@@ -6,7 +6,7 @@ import java.io.IOException;
 import org.junit.Test;
 import org.w3._1999.xsl.format.Root;
 
-import eu.vytenis.cv.fo.FoBuilder;
+import eu.vytenis.cv.fo.FoRootBuilder;
 import eu.vytenis.cv.pdf.PdfCreator;
 import eu.vytenis.cv.xmlio.FoMarshaller;
 
@@ -26,7 +26,7 @@ public class PdfCreatorTest {
 	}
 
 	private String buildXml() {
-		Root root = new FoBuilder().build();
+		Root root = new FoRootBuilder().build();
 		String xml = new FoMarshaller().marshall(root);
 		return xml;
 	}

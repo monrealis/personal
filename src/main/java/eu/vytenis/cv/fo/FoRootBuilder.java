@@ -10,7 +10,7 @@ import org.w3._1999.xsl.format.RegionBody;
 import org.w3._1999.xsl.format.Root;
 import org.w3._1999.xsl.format.SimplePageMaster;
 
-public class FoBuilder {
+public class FoRootBuilder {
 	private Root root;
 	private String masterName = "A4-portrait";
 
