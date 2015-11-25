@@ -1,4 +1,4 @@
-package eu.vytenis.cv;
+package eu.vytenis.cv.fo;
 
 import java.util.List;
 
