@@ -12,6 +12,8 @@ import org.example.cv.CV;
 import org.example.cv.ObjectFactory;
 import org.junit.Test;
 
+import eu.vytenis.cv.builders.CvBuilder;
+
 public class CvMarshallerTest {
 	@Test
 	public void buildsCv() throws Exception {

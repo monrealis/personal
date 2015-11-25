@@ -1,4 +1,4 @@
-package eu.vytenis.cv;
+package eu.vytenis.cv.builders;
 
 import static org.junit.Assert.assertNotNull;
 

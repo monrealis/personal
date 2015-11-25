@@ -1,4 +1,4 @@
-package eu.vytenis.cv;
+package eu.vytenis.cv.builders;
 
 import org.example.cv.CV;
 
