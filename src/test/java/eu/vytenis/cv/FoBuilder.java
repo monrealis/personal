@@ -68,5 +68,4 @@ public class FoBuilder {
 	private Flow flow() {
 		return root.getPageSequence().get(0).getFlow();
 	}
-
 }

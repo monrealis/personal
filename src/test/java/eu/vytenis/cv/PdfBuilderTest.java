@@ -1,7 +1,7 @@
 package eu.vytenis.cv;
 
 import java.io.File;
-import java.io.OutputStream;
+import java.io.FileOutputStream;
 import java.io.Reader;
 import java.io.StringReader;
 
@@ -23,11 +23,14 @@ public class PdfBuilderTest {
 	@Test
 	public void run() throws Exception {
 		FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI());
-		OutputStream os = new ByteArrayOutputStream();
-		Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, os);
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, bos);
 		Transformer t = TransformerFactory.newInstance().newTransformer();
 		StreamSource source = new StreamSource(build());
 		t.transform(source, new SAXResult(fop.getDefaultHandler()));
+		try (FileOutputStream fos = new FileOutputStream("target/test.pdf");) {
+			fos.write(bos.toByteArray());
+		}
 	}
 
 	private Reader build() {
