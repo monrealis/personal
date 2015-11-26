@@ -21,5 +21,4 @@ public class FoBuilderTest {
 		System.out.println(xml);
 		return xml;
 	}
-
 }
