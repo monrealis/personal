@@ -1,6 +1,7 @@
 package eu.vytenis.cv.pdf;
 
 import java.io.File;
+import java.io.InputStream;
 import java.io.StringReader;
 
 import javax.xml.transform.Transformer;
@@ -37,7 +38,9 @@ public class PdfCreator {
 	}
 
 	private byte[] tryCreatePdf() throws Exception {
-		FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI());
+		InputStream is = getClass().getResourceAsStream("/fop.xconf");
+		FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI(),
+				is);
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, bos);
 		Transformer t = TransformerFactory.newInstance().newTransformer();

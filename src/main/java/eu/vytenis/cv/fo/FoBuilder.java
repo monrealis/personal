@@ -17,6 +17,7 @@ public class FoBuilder {
 
 	public void add(String key, String value) {
 		Block b = new Block();
+		b.setFontFamily("Arial");
 		b.getContent().add(key + " = " + value);
 		content().add(b);
 	}
