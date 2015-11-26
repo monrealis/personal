@@ -24,6 +24,10 @@ public class PdfCreator {
 		this.xmlBuilder = new ConstBuilder<String>(xml);
 	}
 
+	public PdfCreator(Builder<String> xmlBuilder) {
+		this.xmlBuilder = xmlBuilder;
+	}
+
 	public byte[] createPdf() {
 		try {
 			return tryCreatePdf();
