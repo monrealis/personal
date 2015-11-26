@@ -41,6 +41,5 @@ public class PdfWriterTest {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-
 	}
 }
