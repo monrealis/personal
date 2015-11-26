@@ -29,8 +29,7 @@ public class PdfWriterTest {
 
 	private void writeToFile(byte[] bytes) {
 		PdfWriter w = new PdfWriter(bytes);
-		w.writeToFile();
-		file = w.getFile();
+		file = w.writeToFile();
 	}
 
 	private void openFile() {
