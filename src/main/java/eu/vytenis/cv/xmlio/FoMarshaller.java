@@ -11,4 +11,9 @@ public class FoMarshaller extends BaseMarshaller {
 	public String marshall(Root root) {
 		return marshallObject(root);
 	}
+	
+	@Override
+	public String marshallObject(Object o) {
+		return super.marshallObject(o);
+	}
 }
