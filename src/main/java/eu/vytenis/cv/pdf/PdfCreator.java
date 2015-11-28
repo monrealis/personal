@@ -38,7 +38,7 @@ public class PdfCreator {
 	}
 
 	private byte[] tryCreatePdf() throws Exception {
-		InputStream is = getClass().getResourceAsStream("/fop.xconf");
+		InputStream is = getClass().getResourceAsStream("/fop.xconf.xml");
 		FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI(),
 				is);
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
