@@ -14,6 +14,13 @@ public class FoTableBuilderTest {
 		print(new FoMarshaller().marshallObject(table));
 	}
 
+	@Test
+	public void addTableToPdf() {
+		FoBuilder builder = new FoBuilder();
+		builder.addContent(createTable());
+		new FopExecutor(builder, true).run();
+	}
+
 	private Table createTable() {
 		return new FoTableBuilder().build();
 	}
