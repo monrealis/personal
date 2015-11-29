@@ -2,15 +2,9 @@ package eu.vytenis.cv.fo;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.junit.Test;
-
-import eu.vytenis.cv.builders.Builder;
-import eu.vytenis.cv.desktop.FileOpener;
-import eu.vytenis.cv.pdf.PdfCreator;
-import eu.vytenis.cv.pdf.PdfWriter;
 
 public class FoBuilderTest {
 	private FoBuilder builder = new FoBuilder();
@@ -19,7 +13,7 @@ public class FoBuilderTest {
 	@Test
 	public void addsKeyValue() {
 		builder.add("Vardas, pavardė", "Vardenis Pavardenis");
-		String xml = buildXml();
+		String xml = print(buildXml());
 		assertTrue(xml, xml.contains("Vardenis"));
 	}
 
@@ -27,15 +21,11 @@ public class FoBuilderTest {
 	public void createsPdf() throws IOException {
 		builder.add("Vardas, pavardė", "Vardenis Pavardenis");
 		builder.add("Vardas, pavardė", "Vardenis Pavardenis");
-		Builder<String> xmlBuilder = () -> buildXml();
-		PdfCreator creator = new PdfCreator(xmlBuilder);
-		Builder<byte[]> pdfBuilder = () -> creator.createPdf();
-		File file = new PdfWriter(pdfBuilder).writeToFile();
-		new FileOpener(file, openFile).open();
+		new FopExecutor(builder, openFile).run();
 	}
 
 	private String buildXml() {
-		return print(builder.buildXml());
+		return print(builder.build());
 	}
 
 	private String print(String xml) {

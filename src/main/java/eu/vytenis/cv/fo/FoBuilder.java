@@ -6,9 +6,10 @@ import org.w3._1999.xsl.format.Block;
 import org.w3._1999.xsl.format.Flow;
 import org.w3._1999.xsl.format.Root;
 
+import eu.vytenis.cv.builders.Builder;
 import eu.vytenis.cv.xmlio.FoMarshaller;
 
-public class FoBuilder {
+public class FoBuilder implements Builder<String> {
 	private Root root;
 
 	public FoBuilder() {
@@ -22,7 +23,7 @@ public class FoBuilder {
 		content().add(b);
 	}
 
-	public String buildXml() {
+	public String build() {
 		return new FoMarshaller().marshall(root);
 	}
 
