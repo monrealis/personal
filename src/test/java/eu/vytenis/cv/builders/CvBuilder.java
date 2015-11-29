@@ -1,6 +1,6 @@
 package eu.vytenis.cv.builders;
 
-import org.example.cv.CV;
+import eu.vytenis.cv.CV;
 
 public class CvBuilder {
 	private CV cv;
