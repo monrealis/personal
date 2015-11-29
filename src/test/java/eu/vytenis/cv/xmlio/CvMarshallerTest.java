@@ -1,4 +1,4 @@
-package eu.vytenis.cv;
+package eu.vytenis.cv.xmlio;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -6,6 +6,7 @@ import javax.xml.bind.JAXBException;
 
 import org.junit.Test;
 
+import eu.vytenis.cv.CV;
 import eu.vytenis.cv.builders.CvBuilder;
 import eu.vytenis.cv.xmlio.CvMarshaller;
 
