@@ -31,7 +31,7 @@ public class FoBuilderTest {
 		PdfCreator creator = new PdfCreator(xmlBuilder);
 		Builder<byte[]> pdfBuilder = () -> creator.createPdf();
 		File file = new PdfWriter(pdfBuilder).writeToFile();
-		new FileOpener(file, true).open();
+		new FileOpener(file, openFile).open();
 	}
 
 	private String buildXml() {
