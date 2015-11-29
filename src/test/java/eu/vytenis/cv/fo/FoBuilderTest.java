@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import eu.vytenis.cv.fop.FopExecutor;
+
 public class FoBuilderTest {
 	private FoBuilder builder = new FoBuilder();
 	private boolean openFile = false;

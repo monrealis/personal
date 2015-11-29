@@ -1,4 +1,4 @@
-package eu.vytenis.cv.fo;
+package eu.vytenis.cv.fop;
 
 import java.io.File;
 
