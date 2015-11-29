@@ -7,6 +7,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 import eu.vytenis.cv.fop.FopExecutor;
+import eu.vytenis.cv.xmlio.FoMarshaller;
 
 public class FoBuilderTest {
 	private FoBuilder builder = new FoBuilder();
@@ -27,7 +28,7 @@ public class FoBuilderTest {
 	}
 
 	private String buildXml() {
-		return print(builder.build());
+		return print(new FoMarshaller().marshall(builder.build()));
 	}
 
 	private String print(String xml) {

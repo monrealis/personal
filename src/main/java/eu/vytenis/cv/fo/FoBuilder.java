@@ -8,9 +8,8 @@ import org.w3._1999.xsl.format.Flow;
 import org.w3._1999.xsl.format.Root;
 
 import eu.vytenis.cv.builders.Builder;
-import eu.vytenis.cv.xmlio.FoMarshaller;
 
-public class FoBuilder implements Builder<String> {
+public class FoBuilder implements Builder<Root> {
 	private Root root;
 	private List<Object> content = new ArrayList<>();
 
@@ -25,9 +24,9 @@ public class FoBuilder implements Builder<String> {
 		content().add(b);
 	}
 
-	public String build() {
+	public Root build() {
 		content.forEach(c -> content().add(c));
-		return new FoMarshaller().marshall(root);
+		return root;
 	}
 
 	private List<Object> content() {
