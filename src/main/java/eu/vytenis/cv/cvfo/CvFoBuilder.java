@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.w3._1999.xsl.format.Root;
 import org.w3._1999.xsl.format.Table;
+import org.w3._1999.xsl.format.TextAlignType;
 
 import eu.vytenis.cv.builders.Builder;
 import eu.vytenis.cv.fo.FoBuilder;
@@ -30,7 +31,8 @@ public class CvFoBuilder implements Builder<Root> {
 	}
 
 	private Table createGeneralInformation() {
-		FoTableBuilder b = new FoTableBuilder();
+		FoTableBuilder b = new FoTableBuilder().withTextAlignOfFirstColumn(
+				TextAlignType.RIGHT).withColumWidth(1, 2);
 		b.add("Vardas, pavardė", "Vardenis Pavardenis");
 		b.add("Adresas", "Pirma gatvė, Kaunas");
 		b.add("Telefonas", "8 000 44444");
@@ -56,7 +58,7 @@ public class CvFoBuilder implements Builder<Root> {
 	}
 
 	private Table createTable() {
-		return new FoTableBuilder().withEmptyRow().build();
+		return new FoTableBuilder().withEmptyRow().withColumWidth(1, 2).build();
 	}
 
 }

@@ -7,7 +7,7 @@ import eu.vytenis.cv.fop.FopExecutor;
 public class CvFoBuilderTest {
 	@Test
 	public void buildsCv() {
-		new FopExecutor(new CvFoBuilder(), false).run();
+		new FopExecutor(new CvFoBuilder(), true).run();
 	}
 
 }
