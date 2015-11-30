@@ -1,7 +1,6 @@
 package eu.vytenis.cv.fo;
 
-import static java.util.Arrays.asList;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import org.w3._1999.xsl.format.Block;
@@ -17,11 +16,24 @@ import eu.vytenis.cv.builders.Builder;
 
 public class FoTableBuilder implements Builder<Table> {
 	private Table table = createTable();
+	private List<TableRow> rows = new ArrayList<>();
 
 	public Table build() {
 		addColumns();
 		addBody();
 		return table;
+	}
+
+	public FoTableBuilder withEmptyRow() {
+		rows.add(createDefaultRow());
+		return this;
+	}
+
+	private TableRow createDefaultRow() {
+		TableRow row = new TableRow();
+		row.getTableCell().add(createCell());
+		row.getTableCell().add(createCell());
+		return row;
 	}
 
 	private Table createTable() {
@@ -49,27 +61,28 @@ public class FoTableBuilder implements Builder<Table> {
 
 	private TableBody createBody() {
 		TableBody body = new TableBody();
-		body.getTableRow().addAll(createRows());
+		body.getTableRow().addAll(rows);
 		return body;
 	}
 
-	private List<TableRow> createRows() {
-		return asList(createRow());
-	}
-
-	private TableRow createRow() {
+	public void add(String key, String value) {
 		TableRow row = new TableRow();
-		row.getTableCell().add(createCell());
-		row.getTableCell().add(createCell());
-		return row;
+		row.getTableCell().add(createCell(key));
+		row.getTableCell().add(createCell(value));
+		rows.add(row);
 	}
 
 	private TableCell createCell() {
+		return createCell("-");
+	}
+
+	private TableCell createCell(String text) {
 		TableCell cell = new TableCell();
-		cell.setBorder("1pt solid black");
+		// cell.setBorder("1pt solid black");
 		Block block = new Block();
-		block.getContent().add("-");
+		block.getContent().add(text);
 		cell.getMarkerOrBlockOrBlockContainer().add(block);
 		return cell;
 	}
+
 }

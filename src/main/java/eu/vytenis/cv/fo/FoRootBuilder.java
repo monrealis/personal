@@ -46,6 +46,7 @@ public class FoRootBuilder {
 	private Flow createFlow() {
 		Flow flow = new Flow();
 		flow.setFlowName("xsl-region-body");
+		flow.setFontFamily("Arial");
 		return flow;
 	}
 

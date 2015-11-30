@@ -16,14 +16,14 @@ public class FoTableBuilderTest {
 	}
 
 	@Test
-	public void addTableToPdf() {
+	public void addsTableToPdf() {
 		FoBuilder builder = new FoBuilder();
 		builder.addContent(createTable());
-		new FopExecutor(builder, true).run();
+		new FopExecutor(builder, print).run();
 	}
 
 	private Table createTable() {
-		return new FoTableBuilder().build();
+		return new FoTableBuilder().withEmptyRow().build();
 	}
 
 	private void print(String xml) {
