@@ -107,4 +107,8 @@ public class FoTableBuilder implements Builder<Table> {
 		columnWidths.set(columnIndex, width);
 		return this;
 	}
+
+	public TableCell getCellAt(int columnIndex) {
+		return rows.get(rows.size() - 1).getTableCell().get(columnIndex);
+	}
 }

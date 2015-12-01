@@ -3,6 +3,7 @@ package eu.vytenis.cv.cvfo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3._1999.xsl.format.Block;
 import org.w3._1999.xsl.format.Root;
 import org.w3._1999.xsl.format.Table;
 import org.w3._1999.xsl.format.TextAlignType;
@@ -25,7 +26,7 @@ public class CvFoBuilder implements Builder<Root> {
 		workExperience = createTable();
 		education = createTable();
 		personalSkills = createTable();
-		additionalInformation = createTable();
+		additionalInformation = createAdditionalInformation();
 		addTables();
 		return builder.build();
 	}
@@ -43,6 +44,23 @@ public class CvFoBuilder implements Builder<Root> {
 		return b.build();
 	}
 
+	private Table createAdditionalInformation() {
+		FoTableBuilder b = new FoTableBuilder().withTextAlignOfFirstColumn(
+				TextAlignType.RIGHT).withColumWidth(1, 2);
+		b.add("Papildoma informacija", "Mokymai:");
+		addBlock(b, "Mokymai1");
+		addBlock(b, "Mokymai2");
+		addBlock(b, "Mokymai3");
+		addBlock(b, "Mokymai4");
+		return b.build();
+	}
+
+	private void addBlock(FoTableBuilder tableBuilder, String text) {
+		Block b = new Block();
+		b.getContent().add(text);
+		tableBuilder.getCellAt(1).getMarkerOrBlockOrBlockContainer().add(b);
+	}
+
 	private void addTables() {
 		buildTables().forEach(t -> builder.addContent(t));
 	}
@@ -58,7 +76,11 @@ public class CvFoBuilder implements Builder<Root> {
 	}
 
 	private Table createTable() {
-		return new FoTableBuilder().withEmptyRow().withColumWidth(1, 2).build();
+		return createTableBuilder().withEmptyRow().build();
+	}
+
+	private FoTableBuilder createTableBuilder() {
+		return new FoTableBuilder().withColumWidth(1, 2);
 	}
 
 }
