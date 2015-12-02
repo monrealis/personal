@@ -20,8 +20,9 @@ import eu.vytenis.cv.builders.Builder;
 public class FoTableBuilder implements Builder<Table> {
 	private Table table = createTable();
 	private List<TableRow> rows = new ArrayList<>();
-	private TextAlignType textAlignOfFirstColumn;
-	private List<Integer> columnWidths = new ArrayList<Integer>(asList(1, 1));
+	private List<Integer> columnWidths = new ArrayList<>(asList(1, 1));
+	private List<TextAlignType> textAligns = new ArrayList<>(asList(
+			(TextAlignType) null, null));
 
 	public Table build() {
 		addColumns();
@@ -71,11 +72,15 @@ public class FoTableBuilder implements Builder<Table> {
 		return body;
 	}
 
-	public void add(String key, String value) {
+	public void add(String... values) {
 		TableRow row = new TableRow();
-		row.getTableCell().add(createCell(key, textAlignOfFirstColumn));
-		row.getTableCell().add(createCell(value, null));
+		for (int i = 0; i < values.length; ++i)
+			row.getTableCell().add(createCell(values[i], getTextAlignAt(i)));
 		rows.add(row);
+	}
+
+	private TextAlignType getTextAlignAt(int columnIndex) {
+		return textAligns.get(columnIndex);
 	}
 
 	private TableCell createCell() {
@@ -97,13 +102,12 @@ public class FoTableBuilder implements Builder<Table> {
 		return block;
 	}
 
-	public FoTableBuilder withTextAlignOfFirstColumn(
-			TextAlignType textAlignOfFirstColumn) {
-		this.textAlignOfFirstColumn = textAlignOfFirstColumn;
+	public FoTableBuilder withTextAlign(int columnIndex, TextAlignType textAlign) {
+		textAligns.set(columnIndex, textAlign);
 		return this;
 	}
 
-	public FoTableBuilder withColumWidth(int columnIndex, int width) {
+	public FoTableBuilder withColumnWidth(int columnIndex, int width) {
 		columnWidths.set(columnIndex, width);
 		return this;
 	}

@@ -63,8 +63,8 @@ public class CvFoBuilder implements Builder<Root> {
 	}
 
 	private Table createAdditionalInformation() {
-		FoTableBuilder b = new FoTableBuilder().withTextAlignOfFirstColumn(
-				TextAlignType.RIGHT).withColumWidth(1, 2);
+		FoTableBuilder b = new FoTableBuilder().withTextAlign(
+				0, TextAlignType.RIGHT).withColumnWidth(1, 2);
 		b.add("Papildoma informacija", "Mokymai:");
 		addBlock(b, "Mokymai1", 1);
 		addBlock(b, "Mokymai2", 1);
@@ -112,9 +112,9 @@ public class CvFoBuilder implements Builder<Root> {
 
 	private FoTableBuilder createTableBuilder(String header) {
 		FoTableBuilder b = new FoTableBuilder().withEmptyRow()
-				.withTextAlignOfFirstColumn(TextAlignType.RIGHT);
+				.withTextAlign(0, TextAlignType.RIGHT);
 		addBlock(b, header, createHeadingAdjuster(), 0);
-		return b.withColumWidth(1, 2);
+		return b.withColumnWidth(1, 2);
 	}
 
 	private Consumer<Block> createHeadingAdjuster() {
