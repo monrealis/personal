@@ -109,6 +109,10 @@ public class FoTableBuilder implements Builder<Table> {
 	}
 
 	public TableCell getCellAt(int columnIndex) {
-		return rows.get(rows.size() - 1).getTableCell().get(columnIndex);
+		return getLastRow().getTableCell().get(columnIndex);
+	}
+
+	private TableRow getLastRow() {
+		return rows.get(rows.size() - 1);
 	}
 }

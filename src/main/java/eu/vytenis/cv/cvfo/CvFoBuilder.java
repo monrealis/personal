@@ -25,7 +25,7 @@ public class CvFoBuilder implements Builder<Root> {
 	public Root build() {
 		generalInformation = createGeneralInformation();
 		workExperience = createTable("Darbo patirtis");
-		education = createTable("Išsilavinimas");
+		education = createEducation();
 		personalSkills = createTable("Asmeniniai gebėjimai");
 		additionalInformation = createAdditionalInformation();
 		addTables();
@@ -41,6 +41,18 @@ public class CvFoBuilder implements Builder<Root> {
 		b.add("Pilietybė", "Lietuvos");
 		b.add("Gimimo data", "1970-12-31");
 		b.add("Lytis", "Vyras");
+		return b.build();
+	}
+
+	private Table createEducation() {
+		FoTableBuilder b = createTableBuilder("Išsilavinimas");
+		for (int i = 0; i < 3; ++i) {
+			addBlock(b, "Data", createHeadingAdjuster(), 0);
+			b.add("Kvalifikacija", "Bakalauras");
+			b.add("Įstaiga", "Įstaiga1");
+			b.getCellAt(1).getMarkerOrBlockOrBlockContainer().add(createBlock("Adresas1"));
+		}
+			
 		return b.build();
 	}
 
@@ -62,11 +74,16 @@ public class CvFoBuilder implements Builder<Root> {
 
 	private void addBlock(FoTableBuilder tableBuilder, String text,
 			Consumer<Block> adjuster, int colIndex) {
-		Block b = new Block();
-		b.getContent().add(text);
+		Block b = createBlock(text);
 		adjuster.accept(b);
 		tableBuilder.getCellAt(colIndex).getMarkerOrBlockOrBlockContainer()
 				.add(b);
+	}
+
+	private Block createBlock(String text) {
+		Block b = new Block();
+		b.getContent().add(text);
+		return b;
 	}
 
 	private void addTables() {
@@ -90,13 +107,17 @@ public class CvFoBuilder implements Builder<Root> {
 	private FoTableBuilder createTableBuilder(String header) {
 		FoTableBuilder b = new FoTableBuilder().withEmptyRow()
 				.withTextAlignOfFirstColumn(TextAlignType.RIGHT);
+		addBlock(b, header, createHeadingAdjuster(), 0);
+		return b.withColumWidth(1, 2);
+	}
+
+	private Consumer<Block> createHeadingAdjuster() {
 		Consumer<Block> adjuster = a -> {
 			a.setFontWeight("bold");
 			a.setFontSize("12pt");
 			a.setTextAlign(TextAlignType.RIGHT);
 		};
-		addBlock(b, header, adjuster, 0);
-		return b.withColumWidth(1, 2);
+		return adjuster;
 	}
 
 }
