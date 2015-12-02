@@ -26,7 +26,7 @@ public class CvFoBuilder implements Builder<Root> {
 		generalInformation = createGeneralInformation();
 		workExperience = createTable("Darbo patirtis");
 		education = createEducation();
-		personalSkills = createTable("Asmeniniai gebėjimai");
+		personalSkills = createSkills();
 		additionalInformation = createAdditionalInformation();
 		addTables();
 		return builder.build();
@@ -50,9 +50,15 @@ public class CvFoBuilder implements Builder<Root> {
 			addBlock(b, "Data", createHeadingAdjuster(), 0);
 			b.add("Kvalifikacija", "Bakalauras");
 			b.add("Įstaiga", "Įstaiga1");
-			b.getCellAt(1).getMarkerOrBlockOrBlockContainer().add(createBlock("Adresas1"));
+			b.getCellAt(1).getMarkerOrBlockOrBlockContainer()
+					.add(createBlock("Adresas1"));
 		}
-			
+
+		return b.build();
+	}
+
+	private Table createSkills() {
+		FoTableBuilder b = createTableBuilder("Asmeniniai gebėjimai");
 		return b.build();
 	}
 
