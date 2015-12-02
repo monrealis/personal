@@ -63,19 +63,13 @@ public class CvFoBuilder implements Builder<Root> {
 	}
 
 	private Table createAdditionalInformation() {
-		FoTableBuilder b = new FoTableBuilder().withTextAlign(
-				0, TextAlignType.RIGHT).withColumnWidth(1, 2);
-		b.add("Papildoma informacija", "Mokymai:");
-		addBlock(b, "Mokymai1", 1);
-		addBlock(b, "Mokymai2", 1);
-		addBlock(b, "Mokymai3", 1);
-		addBlock(b, "Mokymai4", 1);
+		FoTableBuilder b = createTableBuilder("Papildoma informacija");
+		addBlock(b, "Mokymai:", createNullAdjuster(), 1);
+		addBlock(b, "Mokymai1", createNullAdjuster(), 1);
+		addBlock(b, "Mokymai2", createNullAdjuster(), 1);
+		addBlock(b, "Mokymai3", createNullAdjuster(), 1);
+		addBlock(b, "Mokymai4", createNullAdjuster(), 1);
 		return b.build();
-	}
-
-	private void addBlock(FoTableBuilder tableBuilder, String text, int colIndex) {
-		addBlock(tableBuilder, text, b -> {
-		}, colIndex);
 	}
 
 	private void addBlock(FoTableBuilder tableBuilder, String text,
@@ -112,9 +106,14 @@ public class CvFoBuilder implements Builder<Root> {
 
 	private FoTableBuilder createTableBuilder(String header) {
 		FoTableBuilder b = new FoTableBuilder().withEmptyRow()
-				.withTextAlign(0, TextAlignType.RIGHT);
+				.withTextAlign(0, TextAlignType.RIGHT).withColumnWidth(1, 2);
 		addBlock(b, header, createHeadingAdjuster(), 0);
-		return b.withColumnWidth(1, 2);
+		return b;
+	}
+
+	private Consumer<Block> createNullAdjuster() {
+		return b5 -> {
+		};
 	}
 
 	private Consumer<Block> createHeadingAdjuster() {
