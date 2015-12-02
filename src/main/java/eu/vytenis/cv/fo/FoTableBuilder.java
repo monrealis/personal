@@ -4,6 +4,7 @@ import static java.util.Arrays.asList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.w3._1999.xsl.format.Block;
 import org.w3._1999.xsl.format.BorderCollapseType;
@@ -110,6 +111,11 @@ public class FoTableBuilder implements Builder<Table> {
 	public FoTableBuilder withColumnWidth(int columnIndex, int width) {
 		columnWidths.set(columnIndex, width);
 		return this;
+	}
+
+	public void addBlock(String text, Consumer<Block> adjuster, int colIndex) {
+		Block b = FoBlockBuilder.createBlock(text, adjuster);
+		getCellAt(colIndex).getMarkerOrBlockOrBlockContainer().add(b);
 	}
 
 	public TableCell getCellAt(int columnIndex) {

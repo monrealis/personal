@@ -10,6 +10,7 @@ import org.w3._1999.xsl.format.Table;
 import org.w3._1999.xsl.format.TextAlignType;
 
 import eu.vytenis.cv.builders.Builder;
+import eu.vytenis.cv.fo.FoBlockBuilder;
 import eu.vytenis.cv.fo.FoBuilder;
 import eu.vytenis.cv.fo.FoTableBuilder;
 
@@ -47,11 +48,11 @@ public class CvFoBuilder implements Builder<Root> {
 	private Table createEducation() {
 		FoTableBuilder b = createTableBuilder("Išsilavinimas");
 		for (int i = 0; i < 3; ++i) {
-			addBlock(b, "Data", createHeadingAdjuster(), 0);
+			b.addBlock("Data", createHeadingAdjuster(), 0);
 			b.add("Kvalifikacija", "Bakalauras");
 			b.add("Įstaiga", "Įstaiga1");
 			b.getCellAt(1).getMarkerOrBlockOrBlockContainer()
-					.add(createBlock("Adresas1"));
+					.add(FoBlockBuilder.createBlock("Adresas1"));
 		}
 
 		return b.build();
@@ -64,26 +65,12 @@ public class CvFoBuilder implements Builder<Root> {
 
 	private Table createAdditionalInformation() {
 		FoTableBuilder b = createTableBuilder("Papildoma informacija");
-		addBlock(b, "Mokymai:", createNullAdjuster(), 1);
-		addBlock(b, "Mokymai1", createNullAdjuster(), 1);
-		addBlock(b, "Mokymai2", createNullAdjuster(), 1);
-		addBlock(b, "Mokymai3", createNullAdjuster(), 1);
-		addBlock(b, "Mokymai4", createNullAdjuster(), 1);
+		b.addBlock("Mokymai:", FoBlockBuilder.nullAdjuster(), 1);
+		b.addBlock("Mokymai1", FoBlockBuilder.nullAdjuster(), 1);
+		b.addBlock("Mokymai2", FoBlockBuilder.nullAdjuster(), 1);
+		b.addBlock("Mokymai3", FoBlockBuilder.nullAdjuster(), 1);
+		b.addBlock("Mokymai4", FoBlockBuilder.nullAdjuster(), 1);
 		return b.build();
-	}
-
-	private void addBlock(FoTableBuilder tableBuilder, String text,
-			Consumer<Block> adjuster, int colIndex) {
-		Block b = createBlock(text);
-		adjuster.accept(b);
-		tableBuilder.getCellAt(colIndex).getMarkerOrBlockOrBlockContainer()
-				.add(b);
-	}
-
-	private Block createBlock(String text) {
-		Block b = new Block();
-		b.getContent().add(text);
-		return b;
 	}
 
 	private void addTables() {
@@ -107,13 +94,8 @@ public class CvFoBuilder implements Builder<Root> {
 	private FoTableBuilder createTableBuilder(String header) {
 		FoTableBuilder b = new FoTableBuilder().withEmptyRow()
 				.withTextAlign(0, TextAlignType.RIGHT).withColumnWidth(1, 2);
-		addBlock(b, header, createHeadingAdjuster(), 0);
+		b.addBlock(header, createHeadingAdjuster(), 0);
 		return b;
-	}
-
-	private Consumer<Block> createNullAdjuster() {
-		return b5 -> {
-		};
 	}
 
 	private Consumer<Block> createHeadingAdjuster() {
