@@ -2,6 +2,7 @@ package eu.vytenis.cv.cvfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.w3._1999.xsl.format.Block;
 import org.w3._1999.xsl.format.Root;
@@ -23,17 +24,16 @@ public class CvFoBuilder implements Builder<Root> {
 	@Override
 	public Root build() {
 		generalInformation = createGeneralInformation();
-		workExperience = createTable();
-		education = createTable();
-		personalSkills = createTable();
+		workExperience = createTable("Darbo patirtis");
+		education = createTable("Išsilavinimas");
+		personalSkills = createTable("Asmeniniai gebėjimai");
 		additionalInformation = createAdditionalInformation();
 		addTables();
 		return builder.build();
 	}
 
 	private Table createGeneralInformation() {
-		FoTableBuilder b = new FoTableBuilder().withTextAlignOfFirstColumn(
-				TextAlignType.RIGHT).withColumWidth(1, 2);
+		FoTableBuilder b = createTableBuilder("Asmeninė informacija");
 		b.add("Vardas, pavardė", "Vardenis Pavardenis");
 		b.add("Adresas", "Pirma gatvė, Kaunas");
 		b.add("Telefonas", "8 000 44444");
@@ -48,17 +48,25 @@ public class CvFoBuilder implements Builder<Root> {
 		FoTableBuilder b = new FoTableBuilder().withTextAlignOfFirstColumn(
 				TextAlignType.RIGHT).withColumWidth(1, 2);
 		b.add("Papildoma informacija", "Mokymai:");
-		addBlock(b, "Mokymai1");
-		addBlock(b, "Mokymai2");
-		addBlock(b, "Mokymai3");
-		addBlock(b, "Mokymai4");
+		addBlock(b, "Mokymai1", 1);
+		addBlock(b, "Mokymai2", 1);
+		addBlock(b, "Mokymai3", 1);
+		addBlock(b, "Mokymai4", 1);
 		return b.build();
 	}
 
-	private void addBlock(FoTableBuilder tableBuilder, String text) {
+	private void addBlock(FoTableBuilder tableBuilder, String text, int colIndex) {
+		addBlock(tableBuilder, text, b -> {
+		}, colIndex);
+	}
+
+	private void addBlock(FoTableBuilder tableBuilder, String text,
+			Consumer<Block> adjuster, int colIndex) {
 		Block b = new Block();
 		b.getContent().add(text);
-		tableBuilder.getCellAt(1).getMarkerOrBlockOrBlockContainer().add(b);
+		adjuster.accept(b);
+		tableBuilder.getCellAt(colIndex).getMarkerOrBlockOrBlockContainer()
+				.add(b);
 	}
 
 	private void addTables() {
@@ -75,12 +83,20 @@ public class CvFoBuilder implements Builder<Root> {
 		return tables;
 	}
 
-	private Table createTable() {
-		return createTableBuilder().withEmptyRow().build();
+	private Table createTable(String header) {
+		return createTableBuilder(header).withEmptyRow().build();
 	}
 
-	private FoTableBuilder createTableBuilder() {
-		return new FoTableBuilder().withColumWidth(1, 2);
+	private FoTableBuilder createTableBuilder(String header) {
+		FoTableBuilder b = new FoTableBuilder().withEmptyRow()
+				.withTextAlignOfFirstColumn(TextAlignType.RIGHT);
+		Consumer<Block> adjuster = a -> {
+			a.setFontWeight("bold");
+			a.setFontSize("12pt");
+			a.setTextAlign(TextAlignType.RIGHT);
+		};
+		addBlock(b, header, adjuster, 0);
+		return b.withColumWidth(1, 2);
 	}
 
 }
