@@ -13,6 +13,7 @@ import org.w3._1999.xsl.format.SimplePageMaster;
 public class FoRootBuilder {
 	private Root root;
 	private String masterName = "A4-portrait";
+	private String fontFamily = "Liberation Sans Narrow";
 
 	public Root build() {
 		root = createRoot();
@@ -46,7 +47,7 @@ public class FoRootBuilder {
 	private Flow createFlow() {
 		Flow flow = new Flow();
 		flow.setFlowName("xsl-region-body");
-		flow.setFontFamily("Liberation Sans Narrow");
+		flow.setFontFamily(fontFamily);
 		return flow;
 	}
 
