@@ -7,7 +7,7 @@ import eu.vytenis.cv.fop.FopExecutor;
 import eu.vytenis.cv.xmlio.FoMarshaller;
 
 public class FoTableBuilderTest {
-	private boolean print = true;
+	private boolean openFile = false;
 
 	@Test
 	public void buildsTable() {
@@ -19,7 +19,7 @@ public class FoTableBuilderTest {
 	public void addsTableToPdf() {
 		FoBuilder builder = new FoBuilder();
 		builder.addContent(createTable());
-		new FopExecutor(builder, print).run();
+		new FopExecutor(builder, openFile).run();
 	}
 
 	private Table createTable() {
@@ -27,7 +27,7 @@ public class FoTableBuilderTest {
 	}
 
 	private void print(String xml) {
-		if (print)
+		if (openFile)
 			System.out.println(xml);
 	}
 }
