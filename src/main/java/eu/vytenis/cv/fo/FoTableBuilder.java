@@ -22,7 +22,7 @@ public class FoTableBuilder implements Builder<Table> {
 	private int numberOfColumns = 2;
 	private Table table = createTable();
 	private List<TableRow> rows = new ArrayList<>();
-	private Map<Integer, Integer> columnWidths = new HashMap<>();
+	private Map<Integer, String> columnWidths = new HashMap<>();
 	private Map<Integer, TextAlignType> textAligns = new HashMap<>();
 
 	public FoTableBuilder() {
@@ -65,13 +65,13 @@ public class FoTableBuilder implements Builder<Table> {
 	private void addColumns() {
 		for (int i = 0; i < numberOfColumns; ++i)
 			table.getTableColumn().add(
-					createColumn(columnWidths.getOrDefault(i, 1)));
+					createColumn(columnWidths.getOrDefault(i,
+							"proportional-column-width(1)")));
 	}
 
-	private TableColumn createColumn(int width) {
+	private TableColumn createColumn(String width) {
 		TableColumn c = new TableColumn();
-		c.getColumnWidth().add(
-				String.format("proportional-column-width(%s)", width));
+		c.getColumnWidth().add(width);
 		return c;
 	}
 
@@ -117,7 +117,15 @@ public class FoTableBuilder implements Builder<Table> {
 	}
 
 	public FoTableBuilder withColumnWidth(int columnIndex, int width) {
-		columnWidths.put(columnIndex, width);
+		columnWidths.put(columnIndex,
+				String.format("proportional-column-width(%s)", width));
+		return this;
+	}
+
+	public FoTableBuilder withColumnWidth(String width,
+			Integer... columnIndexes) {
+		for (int columnIndex : columnIndexes)
+			columnWidths.put(columnIndex, width);
 		return this;
 	}
 
