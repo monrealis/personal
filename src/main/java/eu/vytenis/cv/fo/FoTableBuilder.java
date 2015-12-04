@@ -26,7 +26,7 @@ public class FoTableBuilder implements Builder<Table> {
 	private List<TableRow> rows = new ArrayList<>();
 	private Map<Integer, String> columnWidths = new HashMap<>();
 	private Map<Integer, TextAlignType> textAligns = new HashMap<>();
-	private String currentFontSize;
+	private Consumer<Block> formatter;
 
 	public FoTableBuilder() {
 	}
@@ -111,7 +111,8 @@ public class FoTableBuilder implements Builder<Table> {
 	private Block createBlock(String text) {
 		Block block = new Block();
 		block.getContent().add(text);
-		block.setFontSize(currentFontSize);
+		if (formatter != null)
+			formatter.accept(block);
 		return block;
 	}
 
@@ -147,13 +148,13 @@ public class FoTableBuilder implements Builder<Table> {
 		return rows.get(rows.size() - 1);
 	}
 
-	public FoTableBuilder withCurrentFontSize(String currentFontSize) {
-		this.currentFontSize = currentFontSize;
-		return this;
-	}
-
 	public List<TableCell> getAllCells() {
 		return rows.stream().map(TableRow::getTableCell).flatMap(List::stream)
 				.collect(toList());
+	}
+
+	public FoTableBuilder withFormatter(Consumer<Block> formatter) {
+		this.formatter = formatter;
+		return this;
 	}
 }
