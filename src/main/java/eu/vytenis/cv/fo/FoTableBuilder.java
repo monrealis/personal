@@ -1,5 +1,7 @@
 package eu.vytenis.cv.fo;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +26,7 @@ public class FoTableBuilder implements Builder<Table> {
 	private List<TableRow> rows = new ArrayList<>();
 	private Map<Integer, String> columnWidths = new HashMap<>();
 	private Map<Integer, TextAlignType> textAligns = new HashMap<>();
+	private String currentFontSize;
 
 	public FoTableBuilder() {
 	}
@@ -108,6 +111,7 @@ public class FoTableBuilder implements Builder<Table> {
 	private Block createBlock(String text) {
 		Block block = new Block();
 		block.getContent().add(text);
+		block.setFontSize(currentFontSize);
 		return block;
 	}
 
@@ -116,9 +120,10 @@ public class FoTableBuilder implements Builder<Table> {
 		return this;
 	}
 
-	public FoTableBuilder withColumnWidth(int columnIndex, int width) {
-		columnWidths.put(columnIndex,
-				String.format("proportional-column-width(%s)", width));
+	public FoTableBuilder withColumnWidth(int width, Integer... columnIndexes) {
+		for (int columnIndex : columnIndexes)
+			columnWidths.put(columnIndex,
+					String.format("proportional-column-width(%s)", width));
 		return this;
 	}
 
@@ -140,5 +145,15 @@ public class FoTableBuilder implements Builder<Table> {
 
 	private TableRow getLastRow() {
 		return rows.get(rows.size() - 1);
+	}
+
+	public FoTableBuilder withCurrentFontSize(String currentFontSize) {
+		this.currentFontSize = currentFontSize;
+		return this;
+	}
+
+	public List<TableCell> getAllCells() {
+		return rows.stream().map(TableRow::getTableCell).flatMap(List::stream)
+				.collect(toList());
 	}
 }
