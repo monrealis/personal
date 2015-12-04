@@ -39,7 +39,7 @@ public class FoRootBuilder {
 		m.setMasterName(masterName);
 		m.setPageHeight("29.7cm");
 		m.setPageWidth("21.0cm");
-		m.getMargin().add("2cm");
+		m.getMargin().add("1cm");
 		m.setRegionBody(new RegionBody());
 		return m;
 	}
