@@ -1,9 +1,9 @@
 package eu.vytenis.cv.fo;
 
-import static java.util.Arrays.asList;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import org.w3._1999.xsl.format.Block;
@@ -19,11 +19,18 @@ import org.w3._1999.xsl.format.TextAlignType;
 import eu.vytenis.cv.builders.Builder;
 
 public class FoTableBuilder implements Builder<Table> {
+	private int numberOfColumns = 2;
 	private Table table = createTable();
 	private List<TableRow> rows = new ArrayList<>();
-	private List<Integer> columnWidths = new ArrayList<>(asList(1, 1));
-	private List<TextAlignType> textAligns = new ArrayList<>(asList(
-			(TextAlignType) null, null));
+	private Map<Integer, Integer> columnWidths = new HashMap<>();
+	private Map<Integer, TextAlignType> textAligns = new HashMap<>();
+
+	public FoTableBuilder() {
+	}
+
+	public FoTableBuilder(int numberOfColumns) {
+		this.numberOfColumns = numberOfColumns;
+	}
 
 	public Table build() {
 		addColumns();
@@ -56,8 +63,9 @@ public class FoTableBuilder implements Builder<Table> {
 	}
 
 	private void addColumns() {
-		for (int w : columnWidths)
-			table.getTableColumn().add(createColumn(w));
+		for (int i = 0; i < numberOfColumns; ++i)
+			table.getTableColumn().add(
+					createColumn(columnWidths.getOrDefault(i, 1)));
 	}
 
 	private TableColumn createColumn(int width) {
@@ -104,12 +112,12 @@ public class FoTableBuilder implements Builder<Table> {
 	}
 
 	public FoTableBuilder withTextAlign(int columnIndex, TextAlignType textAlign) {
-		textAligns.set(columnIndex, textAlign);
+		textAligns.put(columnIndex, textAlign);
 		return this;
 	}
 
 	public FoTableBuilder withColumnWidth(int columnIndex, int width) {
-		columnWidths.set(columnIndex, width);
+		columnWidths.put(columnIndex, width);
 		return this;
 	}
 
