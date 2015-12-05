@@ -1,6 +1,5 @@
 package eu.vytenis.cv.fo;
 
-import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
@@ -155,10 +154,19 @@ public class FoTableBuilder implements Builder<Table> {
 				.collect(toList());
 	}
 
-	@SuppressWarnings("unchecked")
-	public FoTableBuilder replaceFormatters(Consumer<Block>... newFormatters) {
+	public FoTableBuilder clearFormatters() {
 		formatters.clear();
-		stream(newFormatters).forEach(formatters::add);
+		return this;
+	}
+
+	public FoTableBuilder replaceFormatters(Consumer<Block> newFormatters) {
+		formatters.clear();
+		formatters.add(newFormatters);
+		return this;
+	}
+
+	public FoTableBuilder addFormatter(Consumer<Block> newFormatters) {
+		formatters.add(newFormatters);
 		return this;
 	}
 }

@@ -1,5 +1,7 @@
 package eu.vytenis.cv.fo;
 
+import static java.util.Arrays.asList;
+
 import java.util.List;
 
 import org.w3._1999.xsl.format.Block;
@@ -14,6 +16,7 @@ public class FoRootBuilder {
 	private Root root;
 	private String masterName = "A4-portrait";
 	private String fontFamily = "Liberation Sans Narrow";
+	private String fontSize = "10pt";
 
 	public Root build() {
 		root = createRoot();
@@ -39,7 +42,7 @@ public class FoRootBuilder {
 		m.setMasterName(masterName);
 		m.setPageHeight("29.7cm");
 		m.setPageWidth("21.0cm");
-		m.getMargin().add("1cm");
+		m.getMargin().addAll(asList("1.5cm", "1cm", "1.77cm", "1cm"));
 		m.setRegionBody(new RegionBody());
 		return m;
 	}
@@ -48,6 +51,7 @@ public class FoRootBuilder {
 		Flow flow = new Flow();
 		flow.setFlowName("xsl-region-body");
 		flow.setFontFamily(fontFamily);
+		flow.setFontSize(fontSize );
 		return flow;
 	}
 
