@@ -159,7 +159,7 @@ public class FoTableBuilder implements Builder<Table> {
 		return this;
 	}
 
-	public FoTableBuilder replaceFormatters(Consumer<Block> newFormatters) {
+	public FoTableBuilder overrideFormatter(Consumer<Block> newFormatters) {
 		formatters.clear();
 		formatters.add(newFormatters);
 		return this;
