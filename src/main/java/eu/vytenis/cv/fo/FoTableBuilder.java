@@ -1,5 +1,6 @@
 package eu.vytenis.cv.fo;
 
+import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import org.w3._1999.xsl.format.TableRow;
 import org.w3._1999.xsl.format.TextAlignType;
 
 import eu.vytenis.cv.builders.Builder;
+import eu.vytenis.cv.function.ListConsumer;
 
 public class FoTableBuilder implements Builder<Table> {
 	private int numberOfColumns = 2;
@@ -26,7 +28,7 @@ public class FoTableBuilder implements Builder<Table> {
 	private List<TableRow> rows = new ArrayList<>();
 	private Map<Integer, String> columnWidths = new HashMap<>();
 	private Map<Integer, TextAlignType> textAligns = new HashMap<>();
-	private Consumer<Block> formatter;
+	private final ListConsumer<Block> formatters = new ListConsumer<>();
 
 	public FoTableBuilder() {
 	}
@@ -111,8 +113,8 @@ public class FoTableBuilder implements Builder<Table> {
 	private Block createBlock(String text) {
 		Block block = new Block();
 		block.getContent().add(text);
-		if (formatter != null)
-			formatter.accept(block);
+		if (formatters != null)
+			formatters.accept(block);
 		return block;
 	}
 
@@ -153,8 +155,10 @@ public class FoTableBuilder implements Builder<Table> {
 				.collect(toList());
 	}
 
-	public FoTableBuilder withFormatter(Consumer<Block> formatter) {
-		this.formatter = formatter;
+	@SuppressWarnings("unchecked")
+	public FoTableBuilder replaceFormatters(Consumer<Block>... newFormatters) {
+		formatters.clear();
+		stream(newFormatters).forEach(formatters::add);
 		return this;
 	}
 }
