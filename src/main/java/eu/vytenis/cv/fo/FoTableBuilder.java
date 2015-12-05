@@ -165,8 +165,13 @@ public class FoTableBuilder implements Builder<Table> {
 		return this;
 	}
 
-	public FoTableBuilder addFormatter(Consumer<Block> newFormatters) {
-		formatters.add(newFormatters);
+	public FoTableBuilder addFormatter(Consumer<Block> formatter) {
+		formatters.add(formatter);
+		return this;
+	}
+
+	public FoTableBuilder addFormatters(List<Consumer<Block>> formatterList) {
+		formatterList.forEach(formatters::add);
 		return this;
 	}
 }
