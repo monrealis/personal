@@ -98,7 +98,8 @@ public class FoTableBuilder implements Builder<Table> {
 	private void appendCells(TableRow row, String... values) {
 		int count = row.getTableCell().size();
 		for (int i = 0; i < values.length; ++i)
-			row.getTableCell().add(createCell(values[i], getTextAlignAt(count + i)));
+			row.getTableCell().add(
+					createCell(values[i], getTextAlignAt(count + i)));
 	}
 
 	private TextAlignType getTextAlignAt(int columnIndex) {
@@ -168,7 +169,7 @@ public class FoTableBuilder implements Builder<Table> {
 		return this;
 	}
 
-	public FoTableBuilder overrideFormatter(Consumer<Block> newFormatters) {
+	public FoTableBuilder setFormatter(Consumer<Block> newFormatters) {
 		formatters.clear();
 		formatters.add(newFormatters);
 		return this;
@@ -181,6 +182,16 @@ public class FoTableBuilder implements Builder<Table> {
 
 	public FoTableBuilder addFormatters(List<Consumer<Block>> formatterList) {
 		formatterList.forEach(formatters::add);
+		return this;
+	}
+
+	public FoTableBuilder removeLastFormatter() {
+		formatters.removeLast();
+		return this;
+	}
+
+	public FoTableBuilder removeLastFormatters(int count) {
+		formatters.removeLast(count);
 		return this;
 	}
 }

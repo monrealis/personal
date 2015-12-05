@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.IntStream;
 
 public class ListConsumer<T> implements Consumer<T> {
 	private List<Consumer<T>> consumers = new ArrayList<>();
@@ -22,6 +23,14 @@ public class ListConsumer<T> implements Consumer<T> {
 
 	public void add(Consumer<T> consumer) {
 		consumers.add(consumer);
+	}
+
+	public void removeLast(int n) {
+		IntStream.range(0, n).forEach(this::removeLast);
+	}
+
+	public void removeLast() {
+		consumers.remove(consumers.size() - 1);
 	}
 
 	public void clear() {
