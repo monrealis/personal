@@ -164,34 +164,7 @@ public class FoTableBuilder implements Builder<Table> {
 				.collect(toList());
 	}
 
-	public FoTableBuilder clearFormatters() {
-		formatters.clear();
-		return this;
-	}
-
-	public FoTableBuilder setFormatter(Consumer<Block> newFormatters) {
-		formatters.clear();
-		formatters.add(newFormatters);
-		return this;
-	}
-
-	public FoTableBuilder addFormatter(Consumer<Block> formatter) {
-		formatters.add(formatter);
-		return this;
-	}
-
-	public FoTableBuilder addFormatters(List<Consumer<Block>> formatterList) {
-		formatterList.forEach(formatters::add);
-		return this;
-	}
-
-	public FoTableBuilder removeLastFormatter() {
-		formatters.removeLast();
-		return this;
-	}
-
-	public FoTableBuilder removeLastFormatters(int count) {
-		formatters.removeLast(count);
-		return this;
+	public Formatters formatters() {
+		return new Formatters(formatters);
 	}
 }
