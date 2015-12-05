@@ -87,9 +87,18 @@ public class FoTableBuilder implements Builder<Table> {
 
 	public void add(String... values) {
 		TableRow row = new TableRow();
-		for (int i = 0; i < values.length; ++i)
-			row.getTableCell().add(createCell(values[i], getTextAlignAt(i)));
+		appendCells(row, values);
 		rows.add(row);
+	}
+
+	public void append(String... values) {
+		appendCells(getLastRow(), values);
+	}
+
+	private void appendCells(TableRow row, String... values) {
+		int count = row.getTableCell().size();
+		for (int i = 0; i < values.length; ++i)
+			row.getTableCell().add(createCell(values[i], getTextAlignAt(count + i)));
 	}
 
 	private TextAlignType getTextAlignAt(int columnIndex) {
