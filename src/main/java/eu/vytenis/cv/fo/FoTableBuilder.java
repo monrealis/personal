@@ -51,8 +51,8 @@ public class FoTableBuilder implements Builder<Table> {
 
 	private TableRow createDefaultRow() {
 		TableRow row = new TableRow();
-		row.getTableCell().add(createCell());
-		row.getTableCell().add(createCell());
+		row.getTableCell().add(createEmptyCell());
+		row.getTableCell().add(createEmptyCell());
 		return row;
 	}
 
@@ -110,16 +110,22 @@ public class FoTableBuilder implements Builder<Table> {
 		return textAligns.get(columnIndex);
 	}
 
-	private TableCell createCell() {
+	private TableCell createEmptyCell() {
 		return createCell(" ", null);
 	}
 
 	private TableCell createCell(String text, TextAlignType textAlign) {
-		TableCell cell = new TableCell();
+		TableCell cell = createCell();
 		cell.setTextAlign(textAlign);
 		cell.setPaddingRight("0.5cm");
 		Block block = createBlock(text);
 		cell.getMarkerOrBlockOrBlockContainer().add(block);
+		return cell;
+	}
+
+	private TableCell createCell() {
+		TableCell cell = new TableCell();
+		cellFormatters.accept(cell);
 		return cell;
 	}
 
