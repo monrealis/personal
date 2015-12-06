@@ -1,7 +1,6 @@
 package eu.vytenis.cv.fo;
 
 import static java.util.Arrays.stream;
-import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +29,7 @@ public class FoTableBuilder implements Builder<Table> {
 	private Map<Integer, TextAlignType> textAligns = new HashMap<>();
 	private final ListConsumer<Block> blockFormatters = new ListConsumer<>();
 	private final ListConsumer<TableCell> cellFormatters = new ListConsumer<>();
+	private final ListConsumer<Table> tableFormatters = new ListConsumer<>();
 
 	public FoTableBuilder() {
 	}
@@ -41,7 +41,12 @@ public class FoTableBuilder implements Builder<Table> {
 	public Table build() {
 		addColumns();
 		addBody();
+		format();
 		return table;
+	}
+
+	private void format() {
+		tableFormatters.accept(table);
 	}
 
 	public FoTableBuilder withEmptyRow() {
@@ -193,16 +198,15 @@ public class FoTableBuilder implements Builder<Table> {
 		return rows.get(rows.size() - 1);
 	}
 
-	public List<TableCell> getAllCells() {
-		return rows.stream().map(TableRow::getTableCell).flatMap(List::stream)
-				.collect(toList());
-	}
-
 	public Formatters<Block> formatters() {
 		return new Formatters<>(blockFormatters);
 	}
 
 	public Formatters<TableCell> cells() {
 		return new Formatters<>(cellFormatters);
+	}
+
+	public Formatters<Table> tables() {
+		return new Formatters<>(tableFormatters);
 	}
 }
