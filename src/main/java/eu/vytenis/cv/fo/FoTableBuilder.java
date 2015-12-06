@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import org.w3._1999.xsl.format.Block;
 import org.w3._1999.xsl.format.BorderCollapseType;
@@ -145,6 +146,12 @@ public class FoTableBuilder implements Builder<Table> {
 		for (int columnIndex : columnIndexes)
 			columnWidths.put(columnIndex, width);
 		return this;
+	}
+
+	public void addBlock(String text, int colIndex, Consumer<Block> formatter) {
+		formatters().push(formatter);
+		addBlock(text, colIndex);
+		formatters().pop();
 	}
 
 	public void addBlock(String text, int colIndex) {
