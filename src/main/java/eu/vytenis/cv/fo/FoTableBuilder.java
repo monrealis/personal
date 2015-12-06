@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 import org.w3._1999.xsl.format.Block;
 import org.w3._1999.xsl.format.BorderCollapseType;
@@ -85,14 +84,16 @@ public class FoTableBuilder implements Builder<Table> {
 		return body;
 	}
 
-	public void add(String... values) {
+	public FoTableBuilder add(String... values) {
 		TableRow row = new TableRow();
 		appendCells(row, values);
 		rows.add(row);
+		return this;
 	}
 
-	public void append(String... values) {
+	public FoTableBuilder append(String... values) {
 		appendCells(getLastRow(), values);
+		return this;
 	}
 
 	private void appendCells(TableRow row, String... values) {
@@ -146,9 +147,14 @@ public class FoTableBuilder implements Builder<Table> {
 		return this;
 	}
 
-	public void addBlock(String text, Consumer<Block> adjuster, int colIndex) {
-		Block b = FoBlockBuilder.createBlock(text, adjuster);
+	public void addBlock(String text, int colIndex) {
+		Block b = createBlock(text);
 		getCellAt(colIndex).getMarkerOrBlockOrBlockContainer().add(b);
+	}
+
+	public FoTableBuilder clearCellAt(int columnIndex) {
+		getCellAt(columnIndex).getMarkerOrBlockOrBlockContainer().clear();
+		return this;
 	}
 
 	public TableCell getCellAt(int columnIndex) {
