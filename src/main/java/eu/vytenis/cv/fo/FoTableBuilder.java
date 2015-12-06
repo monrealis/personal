@@ -1,5 +1,6 @@
 package eu.vytenis.cv.fo;
 
+import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
@@ -171,7 +172,13 @@ public class FoTableBuilder implements Builder<Table> {
 		return this;
 	}
 
-	public TableCell getCellAt(int columnIndex) {
+	public FoTableBuilder setColSpan(String colspan, Integer... columnIndexes) {
+		stream(columnIndexes).forEach(
+				i -> getCellAt(i).setNumberColumnsSpanned(colspan));
+		return this;
+	}
+
+	private TableCell getCellAt(int columnIndex) {
 		return getLastRow().getTableCell().get(columnIndex);
 	}
 
