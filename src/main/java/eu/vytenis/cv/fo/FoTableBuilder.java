@@ -28,7 +28,8 @@ public class FoTableBuilder implements Builder<Table> {
 	private List<TableRow> rows = new ArrayList<>();
 	private Map<Integer, String> columnWidths = new HashMap<>();
 	private Map<Integer, TextAlignType> textAligns = new HashMap<>();
-	private final ListConsumer<Block> formatters = new ListConsumer<>();
+	private final ListConsumer<Block> blockFormatters = new ListConsumer<>();
+	private final ListConsumer<TableCell> cellFormatters = new ListConsumer<>();
 
 	public FoTableBuilder() {
 	}
@@ -125,8 +126,8 @@ public class FoTableBuilder implements Builder<Table> {
 	private Block createBlock(String text) {
 		Block block = new Block();
 		block.getContent().add(text);
-		if (formatters != null)
-			formatters.accept(block);
+		if (blockFormatters != null)
+			blockFormatters.accept(block);
 		return block;
 	}
 
@@ -191,7 +192,11 @@ public class FoTableBuilder implements Builder<Table> {
 				.collect(toList());
 	}
 
-	public Formatters formatters() {
-		return new Formatters(formatters);
+	public Formatters<Block> formatters() {
+		return new Formatters<>(blockFormatters);
+	}
+
+	public Formatters<TableCell> cells() {
+		return new Formatters<>(cellFormatters);
 	}
 }
