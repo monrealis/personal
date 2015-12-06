@@ -164,6 +164,13 @@ public class FoTableBuilder implements Builder<Table> {
 		return this;
 	}
 
+	public FoTableBuilder appendToCell(int columnIndex, Object object) {
+		Object add = object instanceof String ? createBlock((String) object)
+				: object;
+		getCellAt(columnIndex).getMarkerOrBlockOrBlockContainer().add(add);
+		return this;
+	}
+
 	public TableCell getCellAt(int columnIndex) {
 		return getLastRow().getTableCell().get(columnIndex);
 	}
