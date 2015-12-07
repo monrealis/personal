@@ -30,6 +30,7 @@ public class FoTableBuilder implements Builder<Table> {
 	private final ListConsumer<Block> blockFormatters = new ListConsumer<>();
 	private final ListConsumer<TableCell> cellFormatters = new ListConsumer<>();
 	private final ListConsumer<Table> tableFormatters = new ListConsumer<>();
+	private String paddingRight = "0.5cm";
 
 	public FoTableBuilder() {
 	}
@@ -122,7 +123,7 @@ public class FoTableBuilder implements Builder<Table> {
 	private TableCell createCell(String text, TextAlignType textAlign) {
 		TableCell cell = createCell();
 		cell.setTextAlign(textAlign);
-		cell.setPaddingRight("0.5cm");
+		cell.setPaddingRight(paddingRight);
 		Block block = createBlock(text);
 		cell.getMarkerOrBlockOrBlockContainer().add(block);
 		return cell;
@@ -162,9 +163,9 @@ public class FoTableBuilder implements Builder<Table> {
 	}
 
 	public void addBlock(String text, int colIndex, Consumer<Block> formatter) {
-		formatters().push(formatter);
+		blocks().push(formatter);
 		addBlock(text, colIndex);
-		formatters().pop();
+		blocks().pop();
 	}
 
 	public void addBlock(String text, int colIndex) {
@@ -198,7 +199,7 @@ public class FoTableBuilder implements Builder<Table> {
 		return rows.get(rows.size() - 1);
 	}
 
-	public Formatters<Block> formatters() {
+	public Formatters<Block> blocks() {
 		return new Formatters<>(blockFormatters);
 	}
 
@@ -208,5 +209,10 @@ public class FoTableBuilder implements Builder<Table> {
 
 	public Formatters<Table> tables() {
 		return new Formatters<>(tableFormatters);
+	}
+
+	public FoTableBuilder setCellPaddingRight(String paddingRight) {
+		this.paddingRight = paddingRight;
+		return this;
 	}
 }
