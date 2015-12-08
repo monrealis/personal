@@ -13,6 +13,7 @@ import eu.vytenis.cv.xmlio.FoMarshaller;
 public class FopExecutor {
 	private final Builder<Root> foRootBuilder;
 	private final boolean openFile;
+	private String xml;
 
 	public FopExecutor(Builder<Root> xmlBuilder, boolean openFile) {
 		this.foRootBuilder = xmlBuilder;
@@ -25,6 +26,11 @@ public class FopExecutor {
 		PdfCreator creator = new PdfCreator(xmlBuilder);
 		Builder<byte[]> pdfBuilder = () -> creator.createPdf();
 		File file = new PdfWriter(pdfBuilder).writeToFile();
+		xml = creator.getXml();
 		new FileOpener(file, openFile).open();
+	}
+
+	public String getXml() {
+		return xml;
 	}
 }

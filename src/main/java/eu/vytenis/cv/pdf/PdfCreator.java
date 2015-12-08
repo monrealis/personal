@@ -3,10 +3,14 @@ package eu.vytenis.cv.pdf;
 import java.io.File;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.io.StringWriter;
 
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
@@ -20,6 +24,7 @@ import eu.vytenis.cv.builders.ConstBuilder;
 
 public class PdfCreator {
 	private final Builder<String> xmlBuilder;
+	private String xml;
 
 	public PdfCreator(String xml) {
 		this.xmlBuilder = new ConstBuilder<String>(xml);
@@ -43,19 +48,32 @@ public class PdfCreator {
 				is);
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, bos);
-		Transformer t = TransformerFactory.newInstance().newTransformer();
-		StreamSource source = createSource();
-		t.transform(source, createResult(fop));
-		byte[] bytes = bos.toByteArray();
-		return bytes;
+		createTransformer().transform(createSource(), createFopResult(fop));
+		fillXml();
+		return bos.toByteArray();
+	}
+
+	private void fillXml() throws TransformerException,
+			TransformerConfigurationException {
+		StringWriter w = new StringWriter();
+		createTransformer().transform(createSource(), new StreamResult(w));
+		xml = w.toString();
+	}
+
+	private Transformer createTransformer()
+			throws TransformerConfigurationException {
+		return TransformerFactory.newInstance().newTransformer();
 	}
 
 	private StreamSource createSource() {
 		return new StreamSource(new StringReader(xmlBuilder.build()));
 	}
 
-	private SAXResult createResult(Fop fop) throws FOPException {
+	private SAXResult createFopResult(Fop fop) throws FOPException {
 		return new SAXResult(fop.getDefaultHandler());
 	}
 
+	public String getXml() {
+		return xml;
+	}
 }
