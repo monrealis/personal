@@ -191,7 +191,13 @@ public class FoTableBuilder implements Builder<Table> {
 		return this;
 	}
 
-	private TableCell getCellAt(int columnIndex) {
+	public FoTableBuilder setRowSpan(String rowspan, Integer... columnIndexes) {
+		stream(columnIndexes).forEach(
+				i -> getCellAt(i).setNumberRowsSpanned(rowspan));
+		return this;
+	}
+
+	public TableCell getCellAt(int columnIndex) {
 		return getLastRow().getTableCell().get(columnIndex);
 	}
 
