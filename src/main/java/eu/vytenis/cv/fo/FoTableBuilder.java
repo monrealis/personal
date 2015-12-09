@@ -93,19 +93,19 @@ public class FoTableBuilder implements Builder<Table> {
 		return body;
 	}
 
-	public FoTableBuilder add(String... values) {
+	public FoTableBuilder add(Object... values) {
 		TableRow row = new TableRow();
 		appendCells(row, values);
 		rows.add(row);
 		return this;
 	}
 
-	public FoTableBuilder append(String... values) {
+	public FoTableBuilder append(Object... values) {
 		appendCells(getLastRow(), values);
 		return this;
 	}
 
-	private void appendCells(TableRow row, String... values) {
+	private void appendCells(TableRow row, Object... values) {
 		int count = row.getTableCell().size();
 		for (int i = 0; i < values.length; ++i)
 			row.getTableCell().add(
@@ -120,12 +120,11 @@ public class FoTableBuilder implements Builder<Table> {
 		return createCell(" ", null);
 	}
 
-	private TableCell createCell(String text, TextAlignType textAlign) {
+	private TableCell createCell(Object object, TextAlignType textAlign) {
 		TableCell cell = createCell();
 		cell.setTextAlign(textAlign);
 		cell.setPaddingRight(paddingRight);
-		Block block = createBlock(text);
-		cell.getMarkerOrBlockOrBlockContainer().add(block);
+		cell.getMarkerOrBlockOrBlockContainer().add(toFoObject(object));
 		return cell;
 	}
 
@@ -179,10 +178,15 @@ public class FoTableBuilder implements Builder<Table> {
 	}
 
 	public FoTableBuilder appendToCell(int columnIndex, Object object) {
-		Object add = object instanceof String ? createBlock((String) object)
-				: object;
-		getCellAt(columnIndex).getMarkerOrBlockOrBlockContainer().add(add);
+		Object o = toFoObject(object);
+		getCellAt(columnIndex).getMarkerOrBlockOrBlockContainer().add(o);
 		return this;
+	}
+
+	private Object toFoObject(Object object) {
+		Object r = object instanceof String ? createBlock((String) object)
+				: object;
+		return r;
 	}
 
 	public FoTableBuilder setColSpan(String colspan, Integer... columnIndexes) {
