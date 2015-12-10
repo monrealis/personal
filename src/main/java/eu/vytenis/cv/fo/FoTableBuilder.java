@@ -184,9 +184,9 @@ public class FoTableBuilder implements Builder<Table> {
 	}
 
 	private Object toFoObject(Object object) {
-		Object r = object instanceof String ? createBlock((String) object)
-				: object;
-		return r;
+		if (object instanceof String)
+			return createBlock((String) object);
+		return object;
 	}
 
 	public FoTableBuilder setColSpan(String colspan, Integer... columnIndexes) {
