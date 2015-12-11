@@ -106,10 +106,10 @@ public class FoTableBuilder implements Builder<Table> {
 	}
 
 	private void appendCells(TableRow row, Object... values) {
-		int count = row.getTableCell().size();
+		List<TableCell> cells = row.getTableCell();
+		int count = cells.size();
 		for (int i = 0; i < values.length; ++i)
-			row.getTableCell().add(
-					createCell(values[i], getTextAlignAt(count + i)));
+			cells.add(createCell(values[i], getTextAlignAt(count + i)));
 	}
 
 	private TextAlignType getTextAlignAt(int columnIndex) {
@@ -137,8 +137,7 @@ public class FoTableBuilder implements Builder<Table> {
 	private Block createBlock(String text) {
 		Block block = new Block();
 		block.getContent().add(text);
-		if (blockFormatters != null)
-			blockFormatters.accept(block);
+		blockFormatters.accept(block);
 		return block;
 	}
 
