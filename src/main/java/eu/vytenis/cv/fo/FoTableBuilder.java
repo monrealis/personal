@@ -75,10 +75,14 @@ public class FoTableBuilder implements Builder<Table> {
 	}
 
 	private void addColumns() {
+		List<TableColumn> columns = table.getTableColumn();
 		for (int i = 0; i < numberOfColumns; ++i)
-			table.getTableColumn().add(
-					createColumn(columnWidths.getOrDefault(i,
-							"proportional-column-width(1)")));
+			columns.add(createColumn(getColumnWidth(i)));
+	}
+
+	private String getColumnWidth(int columnIndex) {
+		String defaultWidth = "proportional-column-width(1)";
+		return columnWidths.getOrDefault(columnIndex, defaultWidth);
 	}
 
 	private TableColumn createColumn(String width) {
