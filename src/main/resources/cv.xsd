@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://vytenis.eu/cv" xmlns:tns="http://vytenis.eu/cv" elementFormDefault="qualified">
-	<element name="cv" type="tns:CV" />
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://vytenis.eu/cv" xmlns:cv="http://vytenis.eu/cv" elementFormDefault="qualified">
+	<element name="cv" type="cv:CV" />
 
 	<complexType name="CV">
 		<sequence>
-			<element name="entry" type="tns:KeyValue" minOccurs="0" maxOccurs="unbounded" />
+			<element name="name" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
+			<element name="address" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
+			<element name="phone" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
+			<element name="email" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
+			<element name="nationality" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
+			<element name="dateOfBirth" type="date" minOccurs="0" maxOccurs="unbounded" />
+			<element name="gender" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
@@ -32,7 +38,7 @@
 		</sequence>
 	</complexType>
 
-	<complexType name="StringWithLanguage">
+	<complexType name="String">
 		<simpleContent>
 			<extension base="string">
 				<attribute name="language" type="string" />
