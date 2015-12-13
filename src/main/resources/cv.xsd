@@ -4,13 +4,13 @@
 
 	<complexType name="CV">
 		<sequence>
-			<element name="name" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
-			<element name="address" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
-			<element name="phone" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
-			<element name="email" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
-			<element name="nationality" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
+			<element name="name" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="address" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="phone" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="email" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="nationality" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="dateOfBirth" type="date" minOccurs="0" maxOccurs="unbounded" />
-			<element name="gender" type="cv:String" minOccurs="0" maxOccurs="unbounded" />
+			<element name="gender" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
@@ -38,7 +38,7 @@
 		</sequence>
 	</complexType>
 
-	<complexType name="String">
+	<complexType name="LString">
 		<simpleContent>
 			<extension base="string">
 				<attribute name="language" type="string" />
