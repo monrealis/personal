@@ -18,6 +18,13 @@
 					</sequence>
 				</complexType>
 			</element>
+			<element name="degrees" minOccurs="0">
+				<complexType>
+					<sequence>
+						<element name="degree" type="cv:TDegree" minOccurs="0" maxOccurs="unbounded" />
+					</sequence>
+				</complexType>
+			</element>
 		</sequence>
 	</complexType>
 
@@ -29,6 +36,15 @@
 			<element name="companyName" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="companyAddress" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="segment" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="TDegree">
+		<sequence>
+			<element name="period" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="qualification" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="institutionName" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="institutionAddress" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
