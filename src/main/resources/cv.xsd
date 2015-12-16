@@ -18,6 +18,13 @@
 					</sequence>
 				</complexType>
 			</element>
+			<element name="projects" minOccurs="0">
+				<complexType>
+					<sequence>
+						<element name="project" type="cv:TProject" minOccurs="0" maxOccurs="unbounded" />
+					</sequence>
+				</complexType>
+			</element>
 			<element name="degrees" minOccurs="0">
 				<complexType>
 					<sequence>
@@ -45,6 +52,17 @@
 			<element name="qualification" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="institutionName" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="institutionAddress" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="TProject">
+		<sequence>
+			<element name="period" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="name" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="client" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="position" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="responsibilities" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="description" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
