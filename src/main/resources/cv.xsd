@@ -87,7 +87,7 @@
 	<complexType name="TLanguageLevel">
 		<sequence>
 			<element name="type" type="cv:TLanguageLevelType" />
-			<element name="name" type="cv:LString" />
+			<element name="name" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
@@ -101,6 +101,7 @@
 			<enumeration value="C2" />
 		</restriction>
 	</simpleType>
+
 	<complexType name="KeyValue">
 		<sequence>
 			<element name="key" type="string" />
