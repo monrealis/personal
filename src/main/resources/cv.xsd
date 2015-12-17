@@ -32,6 +32,13 @@
 					</sequence>
 				</complexType>
 			</element>
+			<element name="languages" minOccurs="0">
+				<complexType>
+					<sequence>
+						<element name="language" type="cv:TLanguage" minOccurs="0" maxOccurs="unbounded" />
+					</sequence>
+				</complexType>
+			</element>
 		</sequence>
 	</complexType>
 
@@ -66,6 +73,34 @@
 		</sequence>
 	</complexType>
 
+	<complexType name="TLanguage">
+		<sequence>
+			<element name="name" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="listening" type="cv:TLanguageLevel" />
+			<element name="reading" type="cv:TLanguageLevel" />
+			<element name="spokenInteraction" type="cv:TLanguageLevel" />
+			<element name="spokenProduction" type="cv:TLanguageLevel" />
+			<element name="writing" type="cv:TLanguageLevel" />
+		</sequence>
+	</complexType>
+
+	<complexType name="TLanguageLevel">
+		<sequence>
+			<element name="type" type="cv:TLanguageLevelType" />
+			<element name="name" type="cv:LString" />
+		</sequence>
+	</complexType>
+
+	<simpleType name="TLanguageLevelType">
+		<restriction base="string">
+			<enumeration value="A1" />
+			<enumeration value="A2" />
+			<enumeration value="B1" />
+			<enumeration value="B2" />
+			<enumeration value="C1" />
+			<enumeration value="C2" />
+		</restriction>
+	</simpleType>
 	<complexType name="KeyValue">
 		<sequence>
 			<element name="key" type="string" />
