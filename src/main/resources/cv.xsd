@@ -102,13 +102,6 @@
 		</restriction>
 	</simpleType>
 
-	<complexType name="KeyValue">
-		<sequence>
-			<element name="key" type="string" />
-			<element name="value" type="string" />
-		</sequence>
-	</complexType>
-
 	<complexType name="Experience">
 		<sequence>
 			<element name="duration" type="string" />
