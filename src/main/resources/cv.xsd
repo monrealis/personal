@@ -110,15 +110,6 @@
 		</sequence>
 	</complexType>
 
-	<complexType name="Project">
-		<sequence>
-			<element name="name" type="string" />
-			<element name="description" type="string" />
-			<element name="role" type="string" />
-			<element name="technologies" type="string" />
-		</sequence>
-	</complexType>
-
 	<complexType name="LString">
 		<simpleContent>
 			<extension base="string">
