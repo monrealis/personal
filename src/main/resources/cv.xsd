@@ -117,14 +117,6 @@
 		</restriction>
 	</simpleType>
 
-	<complexType name="Experience">
-		<sequence>
-			<element name="duration" type="string" />
-			<element name="position" type="string" />
-			<element name="company" type="string" />
-		</sequence>
-	</complexType>
-
 	<complexType name="LString">
 		<simpleContent>
 			<extension base="string">
