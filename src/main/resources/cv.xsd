@@ -40,6 +40,7 @@
 					</sequence>
 				</complexType>
 			</element>
+			<element name="computerSkills" type="cv:TComputerSkills" minOccurs="0" />
 		</sequence>
 	</complexType>
 
@@ -73,12 +74,20 @@
 			<element name="description" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
+
 	<complexType name="TSkills">
 		<sequence>
 			<element name="nativeLanguage" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="technicalSkills" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
+
+	<complexType name="TComputerSkills">
+		<sequence>
+			<element name="skill" type="cv:TKeyValueLString" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
 	<complexType name="TLanguage">
 		<sequence>
 			<element name="name" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
@@ -123,4 +132,13 @@
 			</extension>
 		</simpleContent>
 	</complexType>
+
+	<complexType name="TKeyValueLString">
+		<sequence>
+			<element name="key" type="string" />
+			<element name="value" type="string" />
+		</sequence>
+		<attribute name="language" type="string" />
+	</complexType>
+
 </schema>
