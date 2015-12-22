@@ -132,5 +132,4 @@
 		</sequence>
 		<attribute name="language" type="string" />
 	</complexType>
-
 </schema>
