@@ -42,6 +42,7 @@
 				</complexType>
 			</element>
 			<element name="computerSkills" type="cv:TComputerSkills" minOccurs="0" />
+			<element name="additionalInformation" minOccurs="0" />
 		</sequence>
 	</complexType>
 
