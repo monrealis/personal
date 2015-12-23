@@ -36,6 +36,7 @@
 			<element name="languages" minOccurs="0">
 				<complexType>
 					<sequence>
+						<element name="labels" type="cv:TLanguageLabels" minOccurs="0" maxOccurs="unbounded" />
 						<element name="language" type="cv:TLanguage" minOccurs="0" maxOccurs="unbounded" />
 					</sequence>
 				</complexType>
@@ -98,6 +99,20 @@
 			<element name="writing" type="cv:TLanguageLevel" />
 		</sequence>
 	</complexType>
+
+	<complexType name="TLanguageLabels">
+		<sequence>
+			<element name="understanding" type="string" />
+			<element name="speaking" type="string" />
+			<element name="writing" type="string" />
+			<element name="listening" type="string" />
+			<element name="reading" type="string" />
+			<element name="spokenInteraction" type="string" />
+			<element name="spokenProduction" type="string" />
+		</sequence>
+		<attribute name="language" type="string" />
+	</complexType>
+
 
 	<complexType name="TLanguageLevel">
 		<sequence>
