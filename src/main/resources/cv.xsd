@@ -42,7 +42,7 @@
 				</complexType>
 			</element>
 			<element name="computerSkills" type="cv:TComputerSkills" minOccurs="0" />
-			<element name="additionalInformation" minOccurs="0" />
+			<element name="additionalInformation" type="cv:TAdditionalInformation" minOccurs="0" />
 		</sequence>
 	</complexType>
 
@@ -132,6 +132,20 @@
 			<enumeration value="C2" />
 		</restriction>
 	</simpleType>
+
+	<complexType name="TAdditionalInformation">
+		<sequence>
+			<element name="section" type="cv:TAdditionalInformationSection" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="TAdditionalInformationSection">
+		<sequence>
+			<element name="header" type="string" />
+			<element name="line" type="string" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="language" type="string" />
+	</complexType>
 
 	<complexType name="LString">
 		<simpleContent>
