@@ -4,13 +4,13 @@
 
 	<complexType name="CV">
 		<sequence>
-			<element name="name" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="address" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="phone" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="email" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="nationality" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="name" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="address" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="phone" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="email" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="nationality" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="dateOfBirth" type="date" minOccurs="0" maxOccurs="unbounded" />
-			<element name="gender" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="gender" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="jobs" minOccurs="0">
 				<complexType>
 					<sequence>
@@ -48,39 +48,39 @@
 
 	<complexType name="TJob">
 		<sequence>
-			<element name="period" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="activities" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="position" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="companyName" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="companyAddress" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="segment" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="period" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="activities" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="position" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="companyName" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="companyAddress" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="segment" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
 	<complexType name="TDegree">
 		<sequence>
-			<element name="period" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="qualification" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="institutionName" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="institutionAddress" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="period" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="qualification" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="institutionName" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="institutionAddress" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
 	<complexType name="TProject">
 		<sequence>
-			<element name="period" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="name" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="client" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="position" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="responsibilities" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="description" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="period" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="name" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="client" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="position" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="responsibilities" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="description" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
 	<complexType name="TSkills">
 		<sequence>
-			<element name="nativeLanguage" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
-			<element name="technicalSkills" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="nativeLanguage" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="technicalSkills" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
@@ -92,7 +92,7 @@
 
 	<complexType name="TLanguage">
 		<sequence>
-			<element name="name" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="name" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="listening" type="cv:TLanguageLevel" />
 			<element name="reading" type="cv:TLanguageLevel" />
 			<element name="spokenInteraction" type="cv:TLanguageLevel" />
@@ -118,7 +118,7 @@
 	<complexType name="TLanguageLevel">
 		<sequence>
 			<element name="type" type="cv:TLanguageLevelType" />
-			<element name="name" type="cv:LString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="name" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
@@ -147,7 +147,7 @@
 		<attribute name="language" type="string" />
 	</complexType>
 
-	<complexType name="LString">
+	<complexType name="TLString">
 		<simpleContent>
 			<extension base="string">
 				<attribute name="language" type="string" />
