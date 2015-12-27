@@ -6,6 +6,10 @@ import java.util.List;
 public class LanguageHolders {
 	private String language;
 
+	public LanguageHolders(String language) {
+		this.language = language;
+	}
+
 	public <T> T getOne(List<T> items, LanguageMapper<T> mapper) {
 		List<T> r = new ArrayList<>();
 		for (T o : items) {
