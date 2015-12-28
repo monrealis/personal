@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import eu.vytenis.cv.TLString;
 
-public class LStringsTest {
+public class LocalizerTest {
 	private TLString string = new TLString();
 	private String language = null;
 
@@ -35,7 +35,6 @@ public class LStringsTest {
 	}
 
 	private String getString() {
-		return new LStrings(language).getString(asList(string));
+		return new Localizer(language).getString(asList(string));
 	}
-
 }
