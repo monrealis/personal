@@ -1,4 +1,4 @@
-package eu.vytenis.cv.localizer;
+package eu.vytenis.cv.language;
 
 import java.util.List;
 

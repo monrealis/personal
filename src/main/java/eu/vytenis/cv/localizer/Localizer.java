@@ -4,6 +4,8 @@ import java.util.List;
 
 import eu.vytenis.cv.TLString;
 import eu.vytenis.cv.TLanguageLabels;
+import eu.vytenis.cv.language.LStrings;
+import eu.vytenis.cv.language.LanguageLabels;
 
 public class Localizer implements LStrings, LanguageLabels {
 	private final LanguageHolders holders;

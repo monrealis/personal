@@ -1,4 +1,4 @@
-package eu.vytenis.cv.lstrings;
+package eu.vytenis.cv.localizer;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
-package eu.vytenis.cv.lstrings;
+package eu.vytenis.cv.localizer;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
@@ -11,8 +11,8 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import eu.vytenis.cv.language.LanguageMapper;
 import eu.vytenis.cv.localizer.LanguageHolders;
-import eu.vytenis.cv.localizer.LanguageMapper;
 
 public class LanguageHoldersTest {
 	private Object o1 = new Object();

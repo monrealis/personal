@@ -3,6 +3,8 @@ package eu.vytenis.cv.localizer;
 import java.util.ArrayList;
 import java.util.List;
 
+import eu.vytenis.cv.language.LanguageMapper;
+
 public class LanguageHolders {
 	private String language;
 
