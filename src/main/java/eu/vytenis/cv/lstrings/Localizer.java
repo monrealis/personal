@@ -3,16 +3,23 @@ package eu.vytenis.cv.lstrings;
 import java.util.List;
 
 import eu.vytenis.cv.TLString;
+import eu.vytenis.cv.TLanguageLabels;
 
-public class Localizer implements LStrings {
-	private final String language;
+public class Localizer implements LStrings, LanguageLabels {
+	private final LanguageHolders holders;
 
 	public Localizer(String language) {
-		this.language = language;
+		holders = new LanguageHolders(language);
 	}
 
+	@Override
 	public String getString(List<TLString> items) {
-		new LanguageHolders(language).getOne(items, ls -> ls.getLanguage());
+		holders.getOne(items, ls -> ls.getLanguage());
 		return items.iterator().next().getValue();
+	}
+
+	@Override
+	public TLanguageLabels getLanguageLabels(List<TLanguageLabels> items) {
+		return holders.getOne(items, ll -> ll.getLanguage());
 	}
 }
