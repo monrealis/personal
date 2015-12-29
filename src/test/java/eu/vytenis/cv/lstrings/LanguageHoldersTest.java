@@ -11,6 +11,9 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import eu.vytenis.cv.localizer.LanguageHolders;
+import eu.vytenis.cv.localizer.LanguageMapper;
+
 public class LanguageHoldersTest {
 	private Object o1 = new Object();
 	private Object o2 = new Object();

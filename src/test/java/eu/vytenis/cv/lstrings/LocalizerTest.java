@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import eu.vytenis.cv.TLString;
+import eu.vytenis.cv.localizer.Localizer;
 
 public class LocalizerTest {
 	private TLString string = new TLString();
