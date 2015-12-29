@@ -4,14 +4,14 @@ import java.util.List;
 
 import eu.vytenis.cv.TLString;
 import eu.vytenis.cv.TLanguageLabels;
-import eu.vytenis.cv.language.LStrings;
-import eu.vytenis.cv.language.LanguageLabels;
+import eu.vytenis.cv.language.LStringSelector;
+import eu.vytenis.cv.language.LanguageLabelsSelector;
 
-public class Localizer implements LStrings, LanguageLabels {
-	private final LanguageHolders holders;
+public class MapperBasedSelector implements LStringSelector, LanguageLabelsSelector {
+	private final MapperBasedGeneralSelector holders;
 
-	public Localizer(String language) {
-		holders = new LanguageHolders(language);
+	public MapperBasedSelector(String language) {
+		holders = new MapperBasedGeneralSelector(language);
 	}
 
 	@Override

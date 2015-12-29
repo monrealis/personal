@@ -4,6 +4,6 @@ import java.util.List;
 
 import eu.vytenis.cv.TLanguageLabels;
 
-public interface LanguageLabels {
+public interface LanguageLabelsSelector {
 	TLanguageLabels getLanguageLabels(List<TLanguageLabels> items);
 }

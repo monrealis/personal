@@ -3,12 +3,10 @@ package eu.vytenis.cv.localizer;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.vytenis.cv.language.LanguageMapper;
-
-public class LanguageHolders {
+class MapperBasedGeneralSelector {
 	private String language;
 
-	public LanguageHolders(String language) {
+	public MapperBasedGeneralSelector(String language) {
 		this.language = language;
 	}
 

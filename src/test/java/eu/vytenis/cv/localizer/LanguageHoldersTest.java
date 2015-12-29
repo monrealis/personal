@@ -11,14 +11,13 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import eu.vytenis.cv.language.LanguageMapper;
-import eu.vytenis.cv.localizer.LanguageHolders;
+import eu.vytenis.cv.localizer.MapperBasedGeneralSelector;
 
 public class LanguageHoldersTest {
 	private Object o1 = new Object();
 	private Object o2 = new Object();
 	private List<Object> objects = asList(o1, o2);
-	private LanguageHolders holders = new LanguageHolders(null);
+	private MapperBasedGeneralSelector holders = new MapperBasedGeneralSelector(null);
 	private Map<Object, String> languages = new HashMap<>();
 	private LanguageMapper<Object> mapper = o -> languages.get(o);
 

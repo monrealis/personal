@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import eu.vytenis.cv.TLString;
-import eu.vytenis.cv.localizer.Localizer;
+import eu.vytenis.cv.localizer.MapperBasedSelector;
 
 public class LocalizerTest {
 	private TLString string = new TLString();
@@ -36,6 +36,6 @@ public class LocalizerTest {
 	}
 
 	private String getString() {
-		return new Localizer(language).getString(asList(string));
+		return new MapperBasedSelector(language).getString(asList(string));
 	}
 }
