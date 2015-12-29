@@ -4,10 +4,9 @@ import java.util.List;
 
 import eu.vytenis.cv.TLString;
 import eu.vytenis.cv.TLanguageLabels;
-import eu.vytenis.cv.language.LStringSelector;
-import eu.vytenis.cv.language.LanguageLabelsSelector;
+import eu.vytenis.cv.language.XmlElementSelector;
 
-public class MapperBasedSelector implements LStringSelector, LanguageLabelsSelector {
+public class MapperBasedSelector implements XmlElementSelector {
 	private final MapperBasedGeneralSelector holders;
 
 	public MapperBasedSelector(String language) {
