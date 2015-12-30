@@ -2,6 +2,7 @@ package eu.vytenis.cv.localizer;
 
 import java.util.List;
 
+import eu.vytenis.cv.TAdditionalInformationSection;
 import eu.vytenis.cv.TLString;
 import eu.vytenis.cv.TLanguageLabels;
 import eu.vytenis.cv.language.XmlElementSelector;
@@ -22,5 +23,11 @@ public class MapperBasedSelector implements XmlElementSelector {
 	@Override
 	public TLanguageLabels getLanguageLabels(List<TLanguageLabels> items) {
 		return holders.getOne(items, ll -> ll.getLanguage());
+	}
+
+	@Override
+	public TAdditionalInformationSection getAdditionalInformationSection(
+			List<TAdditionalInformationSection> items) {
+		return holders.getOne(items, ai -> ai.getLanguage());
 	}
 }
