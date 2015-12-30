@@ -9,7 +9,7 @@ import org.junit.Test;
 import eu.vytenis.cv.TLString;
 import eu.vytenis.cv.localizer.MapperBasedSelector;
 
-public class LocalizerTest {
+public class MapperBasedSelectorTest {
 	private TLString string = new TLString();
 	private String language = null;
 
