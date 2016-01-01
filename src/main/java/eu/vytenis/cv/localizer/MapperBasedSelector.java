@@ -26,8 +26,8 @@ public class MapperBasedSelector implements XmlElementSelector {
 	}
 
 	@Override
-	public TAdditionalInformationSection getAdditionalInformationSection(
+	public List<TAdditionalInformationSection> getAdditionalInformationSection(
 			List<TAdditionalInformationSection> items) {
-		return holders.getOne(items, ai -> ai.getLanguage());
+		return holders.getMany(items, ai -> ai.getLanguage());
 	}
 }
