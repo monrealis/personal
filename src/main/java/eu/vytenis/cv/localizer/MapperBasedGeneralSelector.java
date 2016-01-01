@@ -11,6 +11,11 @@ class MapperBasedGeneralSelector {
 	}
 
 	public <T> T getOne(List<T> items, LanguageMapper<T> mapper) {
+		List<T> r = getMany(items, mapper);
+		return !r.isEmpty() ? r.iterator().next() : null;
+	}
+
+	public <T> List<T> getMany(List<T> items, LanguageMapper<T> mapper) {
 		List<T> r = new ArrayList<>();
 		for (T o : items) {
 			String objectLanguage = mapper.getLanguage(o);
@@ -19,7 +24,7 @@ class MapperBasedGeneralSelector {
 			if (language != null && language.equals(objectLanguage))
 				r.add(o);
 		}
-		return !r.isEmpty() ? r.iterator().next() : null;
+		return r;
 	}
 
 	public void setLanguage(String language) {
