@@ -10,8 +10,8 @@ import eu.vytenis.cv.language.XmlElementSelector;
 public class MapperBasedSelector implements XmlElementSelector {
 	private final MapperBasedGeneralSelector holders;
 
-	public MapperBasedSelector(String language) {
-		holders = new MapperBasedGeneralSelector(language);
+	public MapperBasedSelector(String language, boolean withFallback) {
+		holders = new MapperBasedGeneralSelector(language, withFallback);
 	}
 
 	@Override

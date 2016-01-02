@@ -17,7 +17,7 @@ public class LanguageHoldersTest {
 	private Object o1 = new Object();
 	private Object o2 = new Object();
 	private List<Object> objects = asList(o1, o2);
-	private MapperBasedGeneralSelector holders = new MapperBasedGeneralSelector(null);
+	private MapperBasedGeneralSelector holders = new MapperBasedGeneralSelector(null, false);
 	private Map<Object, String> languages = new HashMap<>();
 	private LanguageMapper<Object> mapper = o -> languages.get(o);
 

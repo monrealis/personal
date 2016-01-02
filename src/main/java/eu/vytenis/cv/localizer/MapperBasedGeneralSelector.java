@@ -5,9 +5,11 @@ import java.util.List;
 
 class MapperBasedGeneralSelector {
 	private String language;
+	private boolean withFallback;
 
-	public MapperBasedGeneralSelector(String language) {
+	public MapperBasedGeneralSelector(String language, boolean withFallback) {
 		this.language = language;
+		this.withFallback = withFallback;
 	}
 
 	public <T> T getOne(List<T> items, LanguageMapper<T> mapper) {

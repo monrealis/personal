@@ -44,20 +44,20 @@ public class MapperBasedSelectorTest {
 	}
 
 	private String getString() {
-		return new MapperBasedSelector(language).getString(asList(string));
+		return create().getString(asList(string));
 	}
 
 	@Test
 	public void getSections_returnsForNullLanguage() {
 		assertEquals(asList(section1, section2), getSections());
 	}
-	
+
 	@Test
 	public void getSections_doesNotReturnIfNotFound() {
 		language = "lt";
 		assertEquals(emptyList(), getSections());
 	}
-	
+
 	@Test
 	public void getSections_returnsByLanguage() {
 		language = "lt";
@@ -65,9 +65,11 @@ public class MapperBasedSelectorTest {
 		assertEquals(asList(section2), getSections());
 	}
 
-
 	private List<TAdditionalInformationSection> getSections() {
-		return new MapperBasedSelector(language)
-				.getAdditionalInformationSection(sections);
+		return create().getAdditionalInformationSection(sections);
+	}
+
+	private MapperBasedSelector create() {
+		return new MapperBasedSelector(language, false);
 	}
 }
