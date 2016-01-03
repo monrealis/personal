@@ -9,7 +9,7 @@ import eu.vytenis.cv.builders.ConstBuilder;
 
 public class PdfWriter {
 	private final Builder<byte[]> bytesBuilder;
-	private final File file = new File("target/test.pdf");
+	private String fileNamePostfix = "";
 
 	public PdfWriter(byte[] bytes) {
 		this.bytesBuilder = new ConstBuilder<>(bytes);
@@ -20,11 +20,20 @@ public class PdfWriter {
 	}
 
 	public File writeToFile() {
+		File file = getFile();
 		try (FileOutputStream fos = new FileOutputStream(file);) {
 			fos.write(bytesBuilder.build());
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}
 		return file;
+	}
+
+	private File getFile() {
+		return new File(String.format("target/test%s.pdf", fileNamePostfix));
+	}
+	
+	public void setFileNamePostfix(String fileNamePostfix) {
+		this.fileNamePostfix = fileNamePostfix;
 	}
 }

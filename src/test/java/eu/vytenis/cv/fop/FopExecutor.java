@@ -14,6 +14,7 @@ public class FopExecutor {
 	private final Builder<Root> foRootBuilder;
 	private final boolean openFile;
 	private String xml;
+	private String fileNamePostfix;
 
 	public FopExecutor(Builder<Root> xmlBuilder, boolean openFile) {
 		this.foRootBuilder = xmlBuilder;
@@ -25,12 +26,23 @@ public class FopExecutor {
 				.marshall(foRootBuilder.build());
 		PdfCreator creator = new PdfCreator(xmlBuilder);
 		Builder<byte[]> pdfBuilder = () -> creator.createPdf();
-		File file = new PdfWriter(pdfBuilder).writeToFile();
+		File file = createPdfWriter(pdfBuilder).writeToFile();
 		xml = creator.getXml();
 		new FileOpener(file, openFile).open();
 	}
 
+	private PdfWriter createPdfWriter(Builder<byte[]> pdfBuilder) {
+		PdfWriter w = new PdfWriter(pdfBuilder);
+		if (fileNamePostfix != null)
+			w.setFileNamePostfix(fileNamePostfix);
+		return w;
+	}
+
 	public String getXml() {
 		return xml;
+	}
+
+	public void setFileNamePostfix(String fileNamePostfix) {
+		this.fileNamePostfix = fileNamePostfix;
 	}
 }
