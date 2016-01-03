@@ -16,8 +16,10 @@ public class MapperBasedSelector implements XmlElementSelector {
 
 	@Override
 	public String getString(List<TLString> items) {
-		holders.getOne(items, ls -> ls.getLanguage());
-		return items.iterator().next().getValue();
+		TLString r = holders.getOne(items, ls -> ls.getLanguage());
+		if (r == null)
+			return null;
+		return r.getValue();
 	}
 
 	@Override

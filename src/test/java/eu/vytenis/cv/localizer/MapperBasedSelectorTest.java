@@ -3,6 +3,7 @@ package eu.vytenis.cv.localizer;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import eu.vytenis.cv.TAdditionalInformationSection;
 import eu.vytenis.cv.TLString;
 
 public class MapperBasedSelectorTest {
+	private boolean withFallback = false;
 	private TLString string = new TLString();
 	private TAdditionalInformationSection section1 = new TAdditionalInformationSection();
 	private TAdditionalInformationSection section2 = new TAdditionalInformationSection();
@@ -40,6 +42,19 @@ public class MapperBasedSelectorTest {
 	@Test
 	public void doesNotReturnIfNotFound() {
 		string.setLanguage("lt");
+		assertNull(getString());
+	}
+
+	@Test
+	public void doesNotReturnIfNotFoundAndNotWithFallback() {
+		language = "lt";
+		assertNull(getString());
+	}
+
+	@Test
+	public void returnsDefaultIfWithFallback() {
+		language = "lt";
+		withFallback = true;
 		assertEquals("X", getString());
 	}
 
@@ -70,6 +85,6 @@ public class MapperBasedSelectorTest {
 	}
 
 	private MapperBasedSelector create() {
-		return new MapperBasedSelector(language, false);
+		return new MapperBasedSelector(language, withFallback);
 	}
 }
