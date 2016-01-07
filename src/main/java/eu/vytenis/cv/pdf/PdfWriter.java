@@ -30,9 +30,15 @@ public class PdfWriter {
 	}
 
 	private File getFile() {
-		return new File(String.format("target/test%s.pdf", fileNamePostfix));
+		return new File(String.format("target/test%s.pdf", getPostfixPart()));
 	}
-	
+
+	private String getPostfixPart() {
+		if (fileNamePostfix == null)
+			return "";
+		return String.format("-%s", fileNamePostfix);
+	}
+
 	public void setFileNamePostfix(String fileNamePostfix) {
 		this.fileNamePostfix = fileNamePostfix;
 	}
