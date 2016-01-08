@@ -19,7 +19,7 @@ public class FoBuilder implements Builder<Root> {
 
 	public void add(String key, String value) {
 		Block b = new Block();
-		b.getContent().add(key + " = " + value);
+		b.getContent().add(String.format("%s = %s", key, value));
 		content().add(b);
 	}
 
