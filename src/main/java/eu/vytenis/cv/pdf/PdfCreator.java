@@ -53,8 +53,7 @@ public class PdfCreator {
 		return bos.toByteArray();
 	}
 
-	private void fillXml() throws TransformerException,
-			TransformerConfigurationException {
+	private void fillXml() throws TransformerException {
 		StringWriter w = new StringWriter();
 		createTransformer().transform(createSource(), new StreamResult(w));
 		xml = w.toString();
