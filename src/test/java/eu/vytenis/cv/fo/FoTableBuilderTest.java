@@ -12,7 +12,11 @@ public class FoTableBuilderTest {
 	@Test
 	public void buildsTable() {
 		Table table = createTable();
-		print(new FoMarshaller().marshallObject(table));
+		print(new FoMarshaller() {
+			public String marshallObject(Object o) {
+				return super.marshallObject(o);
+			};
+		}.marshallObject(table));
 	}
 
 	@Test
