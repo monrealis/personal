@@ -81,6 +81,7 @@
 		<sequence>
 			<element name="nativeLanguage" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="technicalSkills" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="drivingLicence" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
