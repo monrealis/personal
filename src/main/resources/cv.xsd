@@ -111,6 +111,7 @@
 			<element name="reading" type="string" />
 			<element name="spokenInteraction" type="string" />
 			<element name="spokenProduction" type="string" />
+			<element name="note" type="string" />
 		</sequence>
 		<attribute name="language" type="string" />
 	</complexType>
