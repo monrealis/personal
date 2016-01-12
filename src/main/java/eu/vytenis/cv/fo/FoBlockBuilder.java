@@ -19,7 +19,7 @@ public class FoBlockBuilder {
 	}
 
 	public static Consumer<Block> nullAdjuster() {
-		return b5 -> {
+		return b -> {
 		};
 	}
 }
