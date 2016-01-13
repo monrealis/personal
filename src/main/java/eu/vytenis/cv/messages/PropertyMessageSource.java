@@ -15,8 +15,8 @@ public class PropertyMessageSource {
 	}
 
 	private void put(Entry<Object, Object> entry) {
-		String key = entry.getKey().toString();
-		String value = entry.getValue().toString();
+		String key = (String) entry.getKey();
+		String value = (String) entry.getValue();
 		messages.put(key, value);
 	}
 
