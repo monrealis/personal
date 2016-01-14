@@ -23,10 +23,10 @@ import eu.vytenis.cv.function.ListConsumer;
 
 public class FoTableBuilder implements Builder<Table> {
 	private int numberOfColumns = 2;
-	private Table table = createTable();
-	private List<TableRow> rows = new ArrayList<>();
-	private Map<Integer, String> columnWidths = new HashMap<>();
-	private Map<Integer, TextAlignType> textAligns = new HashMap<>();
+	private final Table table = createTable();
+	private final List<TableRow> rows = new ArrayList<>();
+	private final Map<Integer, String> columnWidths = new HashMap<>();
+	private final Map<Integer, TextAlignType> textAligns = new HashMap<>();
 	private final ListConsumer<Block> blockFormatters = new ListConsumer<>();
 	private final ListConsumer<TableCell> cellFormatters = new ListConsumer<>();
 	private final ListConsumer<Table> tableFormatters = new ListConsumer<>();
