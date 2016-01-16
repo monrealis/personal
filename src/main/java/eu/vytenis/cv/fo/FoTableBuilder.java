@@ -57,8 +57,8 @@ public class FoTableBuilder implements Builder<Table> {
 
 	private TableRow createDefaultRow() {
 		TableRow row = new TableRow();
-		row.getTableCell().add(createEmptyCell());
-		row.getTableCell().add(createEmptyCell());
+		for (int i = 0; i < numberOfColumns; ++i)
+			row.getTableCell().add(createEmptyCell());
 		return row;
 	}
 
