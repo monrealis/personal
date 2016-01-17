@@ -151,9 +151,10 @@ public class FoTableBuilder implements Builder<Table> {
 	}
 
 	public FoTableBuilder withColumnWidth(int width, Integer... columnIndexes) {
-		for (int columnIndex : columnIndexes)
-			columnWidths.put(columnIndex,
-					String.format("proportional-column-width(%s)", width));
+		for (int columnIndex : columnIndexes) {
+			String pw = String.format("proportional-column-width(%s)", width);
+			columnWidths.put(columnIndex, pw);
+		}
 		return this;
 	}
 
