@@ -1,12 +1,12 @@
-package eu.vytenis.cv;
+package eu.vytenis.cv.xsd;
 
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-public class XsdParserTest {
+public class CvXsdParserTest {
 	@Test
 	public void readsCvXsd() {
-		assertNotNull(new XsdParser().parse());
+		assertNotNull(new CvXsdParser().parse());
 	}
 }

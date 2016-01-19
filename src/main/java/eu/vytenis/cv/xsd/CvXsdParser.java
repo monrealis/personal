@@ -1,4 +1,4 @@
-package eu.vytenis.cv;
+package eu.vytenis.cv.xsd;
 
 import java.io.InputStream;
 
@@ -9,7 +9,7 @@ import javax.xml.validation.SchemaFactory;
 
 import org.xml.sax.SAXException;
 
-public class XsdParser {
+public class CvXsdParser {
 	public Schema parse() {
 		try {
 			return tryParse();
@@ -25,5 +25,4 @@ public class XsdParser {
 		Schema schema = f.newSchema(new StreamSource(is));
 		return schema;
 	}
-
 }
