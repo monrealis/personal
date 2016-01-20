@@ -1,15 +1,12 @@
 package eu.vytenis.cv.xmlio;
 
 import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 public class BaseMarshaller {
-	private static Map<Class<?>, JAXBContext> cache = new HashMap<>();
 	protected Class<?>[] types;
 
 	protected BaseMarshaller(Class<?>... types) {
@@ -33,22 +30,9 @@ public class BaseMarshaller {
 	}
 
 	private Marshaller createMarshaller() throws JAXBException {
-		JAXBContext c = getContext();
+		JAXBContext c = new ContextCache().getContext(types);
 		Marshaller m = c.createMarshaller();
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		return m;
-	}
-
-	private JAXBContext getContext() throws JAXBException {
-		JAXBContext context = cache.get(getClass());
-		if (context == null) {
-			context = createContext();
-			cache.put(getClass(), context);
-		}
-		return context;
-	}
-
-	private JAXBContext createContext() throws JAXBException {
-		return JAXBContext.newInstance(types);
 	}
 }
