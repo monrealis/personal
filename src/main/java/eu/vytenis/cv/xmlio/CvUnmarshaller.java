@@ -11,7 +11,11 @@ import javax.xml.bind.Unmarshaller;
 import eu.vytenis.cv.CV;
 import eu.vytenis.cv.ObjectFactory;
 
-public class CvUnmarshaller {
+public class CvUnmarshaller extends BaseUnmarshaller<CV> {
+	public CvUnmarshaller() {
+		super(CV.class, ObjectFactory.class);
+	}
+
 	public CV unmarshall(InputStream xml) {
 		try {
 			return tryUnmarshall(xml);
