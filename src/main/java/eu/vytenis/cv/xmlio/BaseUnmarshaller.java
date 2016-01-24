@@ -7,10 +7,12 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.validation.Schema;
 
 public class BaseUnmarshaller<T> {
 	private final Class<T> type;
 	private final Class<?>[] objectFactoryTypes;
+	private Schema schema;
 
 	public BaseUnmarshaller(Class<T> type, Class<?>... objectFactoryTypes) {
 		this.type = type;
@@ -48,7 +50,12 @@ public class BaseUnmarshaller<T> {
 
 	private Unmarshaller createUnmarshaller() throws JAXBException {
 		JAXBContext c = new ContextCache().getContext(objectFactoryTypes);
-		return c.createUnmarshaller();
+		Unmarshaller um = c.createUnmarshaller();
+		um.setSchema(schema);
+		return um;
 	}
 
+	protected void setSchema(Schema schema) {
+		this.schema = schema;
+	}
 }

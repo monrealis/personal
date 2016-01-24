@@ -6,13 +6,33 @@ import java.io.ByteArrayInputStream;
 
 import org.junit.Test;
 
+import eu.vytenis.cv.CV;
+
 public class CvUnmarshallerTest {
 	private String xml = "<cv xmlns='http://vytenis.eu/cv'/>";
+	private String invalidXml = "<cv xmlns='http://vytenis.eu/cv' invalid='' />";
 	private CvUnmarshaller unmarshaller = new CvUnmarshaller();
 
 	@Test
 	public void unmarshallsString() {
-		assertNotNull(unmarshaller.unmarshall(xml));
+		assertNotNull(unmarshall());
+	}
+
+	@Test
+	public void unmarshallsValidXmlWithValidation() {
+		unmarshaller.setValidating(true);
+		assertNotNull(unmarshall());
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void doesNotUnmarshallInvalidXmlWithValidation() {
+		xml = invalidXml;
+		unmarshaller.setValidating(true);
+		unmarshall();
+	}
+
+	private CV unmarshall() {
+		return unmarshaller.unmarshall(xml);
 	}
 
 	@Test
