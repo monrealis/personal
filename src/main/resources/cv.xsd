@@ -164,4 +164,8 @@
 		</sequence>
 		<attribute name="language" type="string" />
 	</complexType>
+
+	<attributeGroup name="Skippable">
+		<attribute name="skip" fixed="true" type="boolean" />
+	</attributeGroup>
 </schema>
