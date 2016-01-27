@@ -19,9 +19,13 @@ class MapperBasedGeneralSelector {
 
 	public <T> List<T> getMany(List<T> items, LanguageMapper<T> mapper) {
 		List<T> list = getMany(items, mapper, language);
-		if (list.isEmpty() && withFallback && language != null)
-			return getMany(items, mapper, null);
-		return list;
+		if (!list.isEmpty())
+			return list;
+		if (!withFallback)
+			return list;
+		if (language == null)
+			return list;
+		return getMany(items, mapper, null);
 	}
 
 	private <T> List<T> getMany(List<T> items, LanguageMapper<T> mapper,

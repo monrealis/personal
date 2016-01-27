@@ -44,6 +44,14 @@ public class MapperBasedSelectorTest {
 		string.setLanguage("lt");
 		assertNull(getString());
 	}
+	
+	@Test
+	public void doesNotReturnIfNotFound2() {
+		withFallback = true;
+		string.setLanguage("lt");
+		assertNull(getString());
+	}
+
 
 	@Test
 	public void doesNotReturnIfNotFoundAndNotWithFallback() {
