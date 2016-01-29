@@ -25,6 +25,10 @@ public class CvUnmarshaller extends BaseUnmarshaller<CV> {
 	private Schema getSchemaIfValidating(boolean validating) {
 		if (validating)
 			return null;
+		return parseXsd();
+	}
+
+	private Schema parseXsd() {
 		return new CvXsdParser().parse();
 	}
 }
