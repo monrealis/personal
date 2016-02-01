@@ -19,10 +19,13 @@ public class CvXsdParser {
 	}
 
 	private Schema tryParse() throws SAXException {
-		SchemaFactory f = SchemaFactory
-				.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		SchemaFactory f = getSchemaFactory();
 		InputStream is = getClass().getResourceAsStream("/cv.xsd");
 		Schema schema = f.newSchema(new StreamSource(is));
 		return schema;
+	}
+
+	private SchemaFactory getSchemaFactory() {
+		return SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 	}
 }
