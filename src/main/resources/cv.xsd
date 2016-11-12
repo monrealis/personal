@@ -74,6 +74,7 @@
 			<element name="position" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="responsibilities" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 			<element name="description" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
+			<element name="technology" type="cv:TLString" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 
